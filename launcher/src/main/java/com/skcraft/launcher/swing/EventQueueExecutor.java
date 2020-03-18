@@ -6,7 +6,7 @@
 
 package com.skcraft.launcher.swing;
 
-import java.awt.*;
+import java.awt.EventQueue;
 import java.util.concurrent.Executor;
 
 public class EventQueueExecutor implements Executor {

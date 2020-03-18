@@ -7,6 +7,7 @@
 package com.skcraft.launcher.model.minecraft;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Data;
 
 @Data

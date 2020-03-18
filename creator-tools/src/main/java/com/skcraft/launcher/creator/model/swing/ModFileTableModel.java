@@ -6,16 +6,17 @@
 
 package com.skcraft.launcher.creator.model.swing;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.util.List;
+
+import javax.annotation.Nullable;
+import javax.swing.Icon;
+import javax.swing.table.AbstractTableModel;
+
 import com.skcraft.launcher.creator.Creator;
 import com.skcraft.launcher.creator.model.creator.ModFile;
 import com.skcraft.launcher.swing.SwingHelper;
-
-import javax.annotation.Nullable;
-import javax.swing.*;
-import javax.swing.table.AbstractTableModel;
-import java.util.List;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 public class ModFileTableModel extends AbstractTableModel {
 

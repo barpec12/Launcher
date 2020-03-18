@@ -6,19 +6,28 @@
 
 package com.skcraft.launcher.dialog;
 
-import com.skcraft.launcher.swing.LinedBoxPanel;
-import com.skcraft.launcher.swing.SwingHelper;
-import com.skcraft.launcher.util.SharedLocale;
-import lombok.Getter;
-import lombok.Setter;
+import static com.skcraft.launcher.util.SharedLocale.tr;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.AWTException;
+import java.awt.Color;
+import java.awt.Image;
+import java.awt.MenuItem;
+import java.awt.PopupMenu;
+import java.awt.SystemTray;
+import java.awt.TrayIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.PrintWriter;
 
-import static com.skcraft.launcher.util.SharedLocale.tr;
+import javax.swing.JButton;
+import javax.swing.SwingUtilities;
+
+import com.skcraft.launcher.swing.LinedBoxPanel;
+import com.skcraft.launcher.swing.SwingHelper;
+import com.skcraft.launcher.util.SharedLocale;
+
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * A version of the console window that can manage a process.

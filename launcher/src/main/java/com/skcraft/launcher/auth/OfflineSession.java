@@ -6,12 +6,12 @@
 
 package com.skcraft.launcher.auth;
 
-import lombok.Getter;
-import lombok.NonNull;
-
 import java.util.Collections;
 import java.util.Map;
 import java.util.UUID;
+
+import lombok.Getter;
+import lombok.NonNull;
 
 /**
  * An offline session.

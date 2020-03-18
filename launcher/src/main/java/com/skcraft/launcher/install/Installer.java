@@ -6,11 +6,8 @@
 
 package com.skcraft.launcher.install;
 
-import com.skcraft.concurrency.ProgressObservable;
-import com.skcraft.launcher.util.SharedLocale;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.extern.java.Log;
+import static com.skcraft.launcher.LauncherUtils.checkInterrupted;
+import static com.skcraft.launcher.util.SharedLocale.tr;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,8 +15,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static com.skcraft.launcher.LauncherUtils.checkInterrupted;
-import static com.skcraft.launcher.util.SharedLocale.tr;
+import com.skcraft.concurrency.ProgressObservable;
+import com.skcraft.launcher.util.SharedLocale;
+
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.extern.java.Log;
 
 @Log
 public class Installer implements ProgressObservable {

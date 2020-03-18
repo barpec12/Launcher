@@ -6,11 +6,11 @@
 
 package com.skcraft.concurrency;
 
+import java.util.concurrent.Callable;
+
 import com.google.common.base.Function;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.google.common.util.concurrent.ListeningExecutorService;
-
-import java.util.concurrent.Callable;
 
 /**
  * An extension of {@link ListenableFuture} that provides convenience methods

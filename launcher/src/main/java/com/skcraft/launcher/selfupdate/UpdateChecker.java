@@ -6,15 +6,16 @@
 
 package com.skcraft.launcher.selfupdate;
 
+import java.net.URL;
+import java.util.concurrent.Callable;
+
 import com.skcraft.launcher.Launcher;
 import com.skcraft.launcher.LauncherException;
 import com.skcraft.launcher.util.HttpRequest;
 import com.skcraft.launcher.util.SharedLocale;
+
 import lombok.NonNull;
 import lombok.extern.java.Log;
-
-import java.net.URL;
-import java.util.concurrent.Callable;
 
 /**
  * A worker that checks for an update to the launcher. A URL is returned

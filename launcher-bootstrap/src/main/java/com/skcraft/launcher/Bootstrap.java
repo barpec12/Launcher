@@ -6,12 +6,8 @@
 
 package com.skcraft.launcher;
 
-import com.skcraft.launcher.bootstrap.*;
-import lombok.Getter;
-import lombok.extern.java.Log;
+import static com.skcraft.launcher.bootstrap.SharedLocale.tr;
 
-import javax.swing.*;
-import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.io.FileFilter;
 import java.io.IOException;
@@ -20,10 +16,27 @@ import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Locale;
+import java.util.Properties;
 import java.util.logging.Level;
 
-import static com.skcraft.launcher.bootstrap.SharedLocale.tr;
+import javax.swing.JFileChooser;
+import javax.swing.UIManager;
+import javax.swing.filechooser.FileSystemView;
+
+import com.skcraft.launcher.bootstrap.BootstrapUtils;
+import com.skcraft.launcher.bootstrap.Downloader;
+import com.skcraft.launcher.bootstrap.LauncherBinary;
+import com.skcraft.launcher.bootstrap.SharedLocale;
+import com.skcraft.launcher.bootstrap.SimpleLogFormatter;
+import com.skcraft.launcher.bootstrap.SwingHelper;
+
+import lombok.Getter;
+import lombok.extern.java.Log;
 
 @Log
 public class Bootstrap {

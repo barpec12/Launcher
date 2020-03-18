@@ -6,14 +6,14 @@
 
 package com.skcraft.launcher.creator.controller.task;
 
+import java.io.File;
+import java.util.List;
+import java.util.function.Function;
+
 import com.skcraft.launcher.creator.model.creator.ManifestEntry;
 import com.skcraft.launcher.model.modpack.Manifest;
 import com.skcraft.launcher.model.modpack.ManifestInfo;
 import com.skcraft.launcher.persistence.Persistence;
-
-import java.io.File;
-import java.util.List;
-import java.util.function.Function;
 
 public class ManifestInfoEnumerator implements Function<List<ManifestEntry>, List<ManifestEntry>> {
 

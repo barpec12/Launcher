@@ -6,13 +6,14 @@
 
 package com.skcraft.launcher.creator.model.swing;
 
+import java.util.List;
+
+import javax.swing.Icon;
+import javax.swing.table.AbstractTableModel;
+
 import com.skcraft.launcher.creator.Creator;
 import com.skcraft.launcher.creator.model.creator.Problem;
 import com.skcraft.launcher.swing.SwingHelper;
-
-import javax.swing.*;
-import javax.swing.table.AbstractTableModel;
-import java.util.List;
 
 public class ProblemTableModel extends AbstractTableModel {
 

@@ -6,12 +6,13 @@
 
 package com.skcraft.launcher.util;
 
-import com.google.common.util.concurrent.AbstractListeningExecutorService;
-
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import javax.swing.SwingUtilities;
+
+import com.google.common.util.concurrent.AbstractListeningExecutorService;
 
 public final class SwingExecutor extends AbstractListeningExecutorService {
 

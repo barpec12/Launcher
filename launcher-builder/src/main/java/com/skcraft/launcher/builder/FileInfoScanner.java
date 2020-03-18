@@ -6,10 +6,10 @@
 
 package com.skcraft.launcher.builder;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.skcraft.launcher.model.modpack.Feature;
-import lombok.Getter;
-import lombok.extern.java.Log;
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Strings.emptyToNull;
+import static com.skcraft.launcher.builder.ClientFileCollector.getDirectoryBehavior;
+import static org.apache.commons.io.FilenameUtils.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,10 +17,11 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Strings.emptyToNull;
-import static com.skcraft.launcher.builder.ClientFileCollector.getDirectoryBehavior;
-import static org.apache.commons.io.FilenameUtils.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.skcraft.launcher.model.modpack.Feature;
+
+import lombok.Getter;
+import lombok.extern.java.Log;
 
 @Log
 public class FileInfoScanner extends DirectoryWalker {

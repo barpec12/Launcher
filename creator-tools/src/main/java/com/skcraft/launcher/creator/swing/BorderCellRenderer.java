@@ -6,9 +6,13 @@
 
 package com.skcraft.launcher.creator.swing;
 
-import javax.swing.*;
+import java.awt.Component;
+
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.ListCellRenderer;
 import javax.swing.border.Border;
-import java.awt.*;
 
 public class BorderCellRenderer implements ListCellRenderer {
 

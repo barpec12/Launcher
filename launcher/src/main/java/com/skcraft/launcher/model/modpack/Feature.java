@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.google.common.base.Strings;
+
 import lombok.Data;
 
 @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property="name")

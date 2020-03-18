@@ -6,13 +6,14 @@
 
 package com.skcraft.launcher.model.minecraft;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.skcraft.launcher.AssetsRoot;
-import lombok.Data;
-import lombok.NonNull;
-
 import java.io.File;
 import java.util.Map;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.skcraft.launcher.AssetsRoot;
+
+import lombok.Data;
+import lombok.NonNull;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)

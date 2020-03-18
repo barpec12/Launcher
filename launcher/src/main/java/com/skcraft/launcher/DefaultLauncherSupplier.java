@@ -6,10 +6,10 @@
 
 package com.skcraft.launcher;
 
+import java.awt.Window;
+
 import com.google.common.base.Supplier;
 import com.skcraft.launcher.dialog.LauncherFrame;
-
-import java.awt.*;
 
 public class DefaultLauncherSupplier implements Supplier<Window> {
 

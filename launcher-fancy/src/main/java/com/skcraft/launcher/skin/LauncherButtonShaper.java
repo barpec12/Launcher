@@ -6,10 +6,11 @@
 
 package com.skcraft.launcher.skin;
 
-import org.pushingpixels.substance.api.shaper.ClassicButtonShaper;
+import java.awt.Dimension;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.AbstractButton;
+
+import org.pushingpixels.substance.api.shaper.ClassicButtonShaper;
 
 public class LauncherButtonShaper extends ClassicButtonShaper {
 

@@ -6,11 +6,15 @@
 
 package com.skcraft.launcher.bootstrap;
 
-import lombok.extern.java.Log;
-
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.logging.*;
+import java.util.logging.Formatter;
+import java.util.logging.Handler;
+import java.util.logging.Level;
+import java.util.logging.LogRecord;
+import java.util.logging.Logger;
+
+import lombok.extern.java.Log;
 
 @Log
 public final class SimpleLogFormatter extends Formatter {

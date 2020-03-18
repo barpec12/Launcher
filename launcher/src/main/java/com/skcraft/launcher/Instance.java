@@ -6,17 +6,18 @@
 
 package com.skcraft.launcher;
 
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Date;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.io.Files;
 import com.skcraft.launcher.launch.JavaProcessBuilder;
 import com.skcraft.launcher.model.modpack.LaunchModifier;
-import lombok.Data;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.Date;
+import lombok.Data;
 
 /**
  * An instance is a profile that represents one particular installation

@@ -6,13 +6,14 @@
 
 package com.skcraft.launcher.creator.model.creator;
 
+import java.io.File;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.skcraft.launcher.builder.BuilderConfig;
 import com.skcraft.launcher.builder.BuilderOptions;
 import com.skcraft.launcher.persistence.Persistence;
-import lombok.Data;
 
-import java.io.File;
+import lombok.Data;
 
 @Data
 public class Pack {

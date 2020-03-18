@@ -6,13 +6,19 @@
 
 package com.skcraft.launcher;
 
+import java.awt.Window;
+import java.util.logging.Level;
+
+import javax.swing.BorderFactory;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+
 import com.google.common.base.Supplier;
 import com.skcraft.launcher.swing.SwingHelper;
-import lombok.extern.java.Log;
 
-import javax.swing.*;
-import java.awt.*;
-import java.util.logging.Level;
+import lombok.extern.java.Log;
 
 @Log
 public class FancyLauncher {

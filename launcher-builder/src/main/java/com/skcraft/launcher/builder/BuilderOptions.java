@@ -6,11 +6,12 @@
 
 package com.skcraft.launcher.builder;
 
+import java.io.File;
+
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
-import lombok.Data;
 
-import java.io.File;
+import lombok.Data;
 
 @Data
 public class BuilderOptions {

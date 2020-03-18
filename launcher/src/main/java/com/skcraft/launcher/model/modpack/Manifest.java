@@ -6,23 +6,24 @@
 
 package com.skcraft.launcher.model.modpack;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.base.Strings;
 import com.skcraft.launcher.Instance;
 import com.skcraft.launcher.LauncherUtils;
-import com.skcraft.launcher.model.minecraft.VersionManifest;
 import com.skcraft.launcher.install.Installer;
+import com.skcraft.launcher.model.minecraft.VersionManifest;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @EqualsAndHashCode(callSuper = true)

@@ -6,13 +6,14 @@
 
 package com.skcraft.concurrency;
 
-import com.google.common.util.concurrent.ListenableFuture;
-import lombok.NonNull;
-
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+
+import com.google.common.util.concurrent.ListenableFuture;
+
+import lombok.NonNull;
 
 /**
  * A pair of ProgressObservable and ListenableFuture.

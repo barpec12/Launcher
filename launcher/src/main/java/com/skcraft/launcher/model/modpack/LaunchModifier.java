@@ -6,11 +6,12 @@
 
 package com.skcraft.launcher.model.modpack;
 
+import java.util.List;
+
 import com.google.common.collect.Lists;
 import com.skcraft.launcher.launch.JavaProcessBuilder;
-import lombok.Data;
 
-import java.util.List;
+import lombok.Data;
 
 @Data
 public class LaunchModifier {

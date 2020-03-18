@@ -6,12 +6,13 @@
 
 package com.skcraft.launcher.creator.model.creator;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-
 import java.io.File;
 import java.net.URL;
 import java.util.regex.Pattern;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.Data;
 
 @Data
 public class ModFile {

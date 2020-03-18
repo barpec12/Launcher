@@ -6,12 +6,12 @@
 
 package com.skcraft.launcher.model.minecraft;
 
+import java.io.IOException;
+
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.skcraft.launcher.util.Platform;
-
-import java.io.IOException;
 
 public class PlatformDeserializer extends JsonDeserializer<Platform> {
 

@@ -6,9 +6,10 @@
 
 package com.skcraft.launcher.swing;
 
-import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.AbstractButton;
 
 public class DoubleClickToButtonAdapter extends MouseAdapter {
 

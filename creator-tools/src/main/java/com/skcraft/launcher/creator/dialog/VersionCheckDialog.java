@@ -6,17 +6,27 @@
 
 package com.skcraft.launcher.creator.dialog;
 
+import java.awt.BorderLayout;
+import java.awt.Window;
+import java.awt.event.KeyEvent;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.KeyStroke;
+import javax.swing.WindowConstants;
+
 import com.jidesoft.swing.SearchableUtils;
 import com.jidesoft.swing.TableSearchable;
 import com.skcraft.launcher.swing.DefaultTable;
 import com.skcraft.launcher.swing.SwingHelper;
 import com.skcraft.launcher.swing.TableColumnAdjuster;
+
 import lombok.Getter;
 import net.miginfocom.swing.MigLayout;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.KeyEvent;
 
 public class VersionCheckDialog extends JDialog {
 

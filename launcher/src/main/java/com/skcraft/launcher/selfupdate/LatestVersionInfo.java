@@ -6,9 +6,9 @@
 
 package com.skcraft.launcher.selfupdate;
 
-import lombok.Data;
-
 import java.net.URL;
+
+import lombok.Data;
 
 @Data
 public class LatestVersionInfo {

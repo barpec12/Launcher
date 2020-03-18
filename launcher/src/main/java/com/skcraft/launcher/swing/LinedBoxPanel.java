@@ -6,11 +6,15 @@
 
 package com.skcraft.launcher.swing;
 
+import java.awt.Component;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JPanel;
+
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.swing.*;
-import java.awt.*;
 
 public class LinedBoxPanel extends JPanel {
 

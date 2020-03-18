@@ -6,12 +6,14 @@
 
 package com.skcraft.launcher;
 
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
+
 import com.skcraft.launcher.dialog.LauncherFrame;
 import com.skcraft.launcher.swing.SwingHelper;
 import com.skcraft.launcher.swing.WebpagePanel;
-import lombok.NonNull;
 
-import javax.swing.*;
+import lombok.NonNull;
 
 public class FancyLauncherFrame extends LauncherFrame {
 

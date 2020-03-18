@@ -6,16 +6,18 @@
 
 package com.skcraft.launcher.creator.server;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.skcraft.launcher.selfupdate.LatestVersionInfo;
-import org.eclipse.jetty.server.Request;
-import org.eclipse.jetty.server.handler.AbstractHandler;
+import java.io.IOException;
+import java.net.URL;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.net.URL;
+
+import org.eclipse.jetty.server.Request;
+import org.eclipse.jetty.server.handler.AbstractHandler;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.skcraft.launcher.selfupdate.LatestVersionInfo;
 
 class LatestHandler extends AbstractHandler {
 

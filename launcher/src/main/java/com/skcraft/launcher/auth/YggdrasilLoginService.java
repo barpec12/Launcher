@@ -6,17 +6,22 @@
 
 package com.skcraft.launcher.auth;
 
-import com.fasterxml.jackson.annotation.*;
-import com.skcraft.launcher.util.HttpRequest;
-import lombok.Data;
-import lombok.NonNull;
-import lombok.ToString;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.skcraft.launcher.util.HttpRequest;
+
+import lombok.Data;
+import lombok.NonNull;
+import lombok.ToString;
 
 /**
  * Creates authenticated sessions using the Mojang Yggdrasil login protocol.

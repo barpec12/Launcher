@@ -6,16 +6,17 @@
 
 package com.skcraft.launcher.builder;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.google.common.base.Strings.emptyToNull;
+
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.Lists;
 import com.skcraft.launcher.model.modpack.LaunchModifier;
 import com.skcraft.launcher.model.modpack.Manifest;
+
 import lombok.Data;
-
-import java.util.List;
-
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.google.common.base.Strings.emptyToNull;
 
 @Data
 public class BuilderConfig {

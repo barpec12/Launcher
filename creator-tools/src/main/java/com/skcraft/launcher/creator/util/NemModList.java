@@ -6,16 +6,8 @@
 
 package com.skcraft.launcher.creator.util;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
-import com.skcraft.launcher.util.HttpRequest;
-import lombok.Data;
-import lombok.Getter;
+import static com.google.common.base.Preconditions.checkNotNull;
 
-import javax.annotation.Nullable;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collections;
@@ -23,7 +15,17 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import javax.annotation.Nullable;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Maps;
+import com.skcraft.launcher.util.HttpRequest;
+
+import lombok.Data;
+import lombok.Getter;
 
 public class NemModList {
 

@@ -6,18 +6,33 @@
 
 package com.skcraft.launcher.creator.dialog;
 
+import java.awt.BorderLayout;
+import java.awt.Event;
+import java.awt.Insets;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.JToolBar;
+import javax.swing.KeyStroke;
+import javax.swing.WindowConstants;
+
 import com.jidesoft.swing.SearchableUtils;
 import com.jidesoft.swing.TableSearchable;
 import com.skcraft.launcher.creator.Creator;
 import com.skcraft.launcher.swing.DefaultTable;
 import com.skcraft.launcher.swing.SwingHelper;
 import com.skcraft.launcher.swing.TableColumnAdjuster;
+
 import lombok.Getter;
 import net.miginfocom.swing.MigLayout;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.KeyEvent;
 
 public class PackManagerFrame extends JFrame {
 

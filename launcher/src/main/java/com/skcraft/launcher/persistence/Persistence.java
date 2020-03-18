@@ -6,6 +6,13 @@
 
 package com.skcraft.launcher.persistence;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.WeakHashMap;
+import java.util.logging.Level;
+
 import com.fasterxml.jackson.core.PrettyPrinter;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter.Lf2SpacesIndenter;
@@ -14,15 +21,9 @@ import com.google.common.io.ByteSink;
 import com.google.common.io.ByteSource;
 import com.google.common.io.Closer;
 import com.google.common.io.Files;
+
 import lombok.NonNull;
 import lombok.extern.java.Log;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.WeakHashMap;
-import java.util.logging.Level;
 
 /**
  * Simple persistence framework that can read an object from a file, bind

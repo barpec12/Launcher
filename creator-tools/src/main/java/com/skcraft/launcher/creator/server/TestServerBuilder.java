@@ -6,7 +6,8 @@
 
 package com.skcraft.launcher.creator.server;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.File;
+
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.server.handler.ContextHandler;
@@ -14,7 +15,7 @@ import org.eclipse.jetty.server.handler.ContextHandlerCollection;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.server.handler.gzip.GzipHandler;
 
-import java.io.File;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class TestServerBuilder {
 

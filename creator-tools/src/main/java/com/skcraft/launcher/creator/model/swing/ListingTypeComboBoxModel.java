@@ -6,7 +6,8 @@
 
 package com.skcraft.launcher.creator.model.swing;
 
-import javax.swing.*;
+import javax.swing.AbstractListModel;
+import javax.swing.ComboBoxModel;
 
 public class ListingTypeComboBoxModel extends AbstractListModel<ListingType> implements ComboBoxModel<ListingType> {
 

@@ -6,9 +6,7 @@
 
 package com.skcraft.launcher.install;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.NonNull;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.io.File;
 import java.net.URI;
@@ -17,7 +15,10 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import lombok.Data;
+import lombok.NonNull;
 
 @Data
 public class InstallLog {

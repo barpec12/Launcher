@@ -6,10 +6,11 @@
 
 package com.skcraft.launcher.creator.model.creator;
 
-import com.google.common.collect.Lists;
-import lombok.Data;
-
 import java.util.List;
+
+import com.google.common.collect.Lists;
+
+import lombok.Data;
 
 @Data
 public class CreatorConfig {

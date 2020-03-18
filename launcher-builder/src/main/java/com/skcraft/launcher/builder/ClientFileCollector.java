@@ -6,18 +6,20 @@
 
 package com.skcraft.launcher.builder;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+
+import org.apache.commons.io.FilenameUtils;
+
 import com.google.common.hash.HashFunction;
 import com.google.common.hash.Hashing;
 import com.google.common.io.Files;
 import com.skcraft.launcher.model.modpack.FileInstall;
 import com.skcraft.launcher.model.modpack.Manifest;
+
 import lombok.NonNull;
 import lombok.extern.java.Log;
-import org.apache.commons.io.FilenameUtils;
-
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
 
 /**
  * Walks a path and adds hashed path versions to the given

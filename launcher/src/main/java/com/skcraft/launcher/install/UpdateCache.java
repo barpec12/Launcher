@@ -6,11 +6,11 @@
 
 package com.skcraft.launcher.install;
 
-import lombok.Data;
-import lombok.NonNull;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import lombok.Data;
+import lombok.NonNull;
 
 @Data
 public class UpdateCache {

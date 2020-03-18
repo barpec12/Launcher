@@ -6,6 +6,21 @@
 
 package com.skcraft.launcher.install;
 
+import static com.skcraft.launcher.util.SharedLocale.tr;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.logging.Level;
+
 import com.google.common.base.Charsets;
 import com.google.common.base.Strings;
 import com.google.common.hash.HashFunction;
@@ -17,20 +32,11 @@ import com.google.common.util.concurrent.MoreExecutors;
 import com.skcraft.concurrency.ProgressObservable;
 import com.skcraft.launcher.util.HttpRequest;
 import com.skcraft.launcher.util.SharedLocale;
+
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 import lombok.extern.java.Log;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.*;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executors;
-import java.util.logging.Level;
-
-import static com.skcraft.launcher.util.SharedLocale.tr;
 
 @Log
 public class HttpDownloader implements Downloader {

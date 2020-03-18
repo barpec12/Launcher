@@ -6,15 +6,19 @@
 
 package com.skcraft.launcher.swing;
 
-import com.google.common.base.Strings;
-import lombok.NonNull;
-
-import javax.swing.*;
-import javax.swing.text.JTextComponent;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JSpinner;
+import javax.swing.text.JTextComponent;
+
+import com.google.common.base.Strings;
+
+import lombok.NonNull;
 
 public class ObjectSwingMapper {
 
@@ -58,6 +62,40 @@ public class ObjectSwingMapper {
             @Override
             public void copyFromSwing() {
                 field.set(Strings.emptyToNull(textComponent.getText()));
+            }
+        });
+    }
+    
+    public void map(@NonNull final JComboBox<String> comboBoxString, String name) {
+        final MutatorAccessorField<String> field = getField(name, String.class);
+
+        add(new FieldMapping() {
+            @Override
+            public void copyFromObject() {
+            	comboBoxString.setSelectedItem(field.get());
+            }
+
+            @SuppressWarnings("unchecked")
+            @Override
+            public void copyFromSwing() {
+                field.set(Strings.emptyToNull((String) comboBoxString.getSelectedItem()));
+            }
+        });
+    }
+    
+    public void map(@NonNull final JComboBox<String> comboBoxString, String name, boolean isMemory) {
+        final MutatorAccessorField<Integer> field = getField(name, Integer.class);
+
+        add(new FieldMapping() {
+            @Override
+            public void copyFromObject() {
+            	comboBoxString.setSelectedItem(((double)field.get() / 1024) + " GB");
+            }
+
+            @SuppressWarnings("unchecked")
+            @Override
+            public void copyFromSwing() {
+            	field.set((int)(Double.parseDouble(comboBoxString.getSelectedItem().toString().replaceAll(" GB", "")) * 1024));
             }
         });
     }

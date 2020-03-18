@@ -6,10 +6,10 @@
 
 package com.skcraft.launcher.builder;
 
-import lombok.NonNull;
-
 import java.io.File;
 import java.io.IOException;
+
+import lombok.NonNull;
 
 /**
  * Abstract class to recursively walk a directory, keep track of a relative

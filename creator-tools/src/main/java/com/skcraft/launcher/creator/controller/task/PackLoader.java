@@ -6,12 +6,12 @@
 
 package com.skcraft.launcher.creator.controller.task;
 
+import java.util.List;
+
 import com.google.common.base.Function;
 import com.skcraft.concurrency.ProgressObservable;
 import com.skcraft.launcher.creator.model.creator.Pack;
 import com.skcraft.launcher.creator.model.creator.Workspace;
-
-import java.util.List;
 
 public class PackLoader implements ProgressObservable, Function<Workspace, List<Pack>> {
 

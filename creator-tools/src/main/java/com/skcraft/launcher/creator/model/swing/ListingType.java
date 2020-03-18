@@ -6,17 +6,18 @@
 
 package com.skcraft.launcher.creator.model.swing;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import com.skcraft.launcher.creator.model.creator.ManifestEntry;
 import com.skcraft.launcher.model.modpack.ManifestInfo;
 import com.skcraft.launcher.model.modpack.PackageList;
 import com.skcraft.launcher.persistence.Persistence;
-import lombok.Getter;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.stream.Collectors;
+import lombok.Getter;
 
 public enum ListingType {
 

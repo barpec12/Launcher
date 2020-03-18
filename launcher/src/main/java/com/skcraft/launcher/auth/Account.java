@@ -6,12 +6,13 @@
 
 package com.skcraft.launcher.auth;
 
+import java.util.Date;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.common.base.Strings;
+
 import lombok.Data;
 import lombok.NonNull;
-
-import java.util.Date;
 
 /**
  * A user account that can be stored and loaded.

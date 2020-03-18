@@ -6,12 +6,21 @@
 
 package com.skcraft.launcher.dialog;
 
-import com.skcraft.launcher.swing.ActionListeners;
-import net.miginfocom.swing.MigLayout;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Window;
 import java.awt.event.KeyEvent;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.KeyStroke;
+import javax.swing.WindowConstants;
+
+import com.skcraft.launcher.swing.ActionListeners;
+
+import net.miginfocom.swing.MigLayout;
 
 public class AboutDialog extends JDialog {
 
@@ -29,14 +38,14 @@ public class AboutDialog extends JDialog {
         JPanel container = new JPanel();
         container.setLayout(new MigLayout("insets dialog"));
 
-        container.add(new JLabel("<html>Licensed under GNU General Public License, version 3."), "wrap, gapbottom unrel");
-        container.add(new JLabel("<html>You are using SKCraft Launcher, an open-source customizable<br>" +
-                "launcher platform that anyone can use."), "wrap, gapbottom unrel");
-        container.add(new JLabel("<html>SKCraft does not necessarily endorse the version of<br>" +
-                "the launcher that you are using."), "wrap, gapbottom unrel");
+        container.add(new JLabel("<html><meta charset=\"ISO-8859-1\">Licenciado sob a GNU General Public License, versao 3."), "wrap, gapbottom unrel");
+        container.add(new JLabel("<html><meta charset=\"ISO-8859-1\">Voce esta usando o SKCraft Launcher, uma plataforma open-source<br>" +
+                "que qualquer um pode usar."), "wrap, gapbottom unrel");
+        container.add(new JLabel("<html><meta charset=\"ISO-8859-1\">Esse launcher foi modificado por Focamacho para<br>" +
+                "uso na AetherisMC."), "wrap, gapbottom unrel");
 
         JButton okButton = new JButton("OK");
-        JButton sourceCodeButton = new JButton("Website");
+        JButton sourceCodeButton = new JButton("Site");
 
         container.add(sourceCodeButton, "span, split 3, sizegroup bttn");
         container.add(okButton, "tag ok, sizegroup bttn");

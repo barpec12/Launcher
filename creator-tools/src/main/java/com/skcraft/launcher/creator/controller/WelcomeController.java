@@ -6,6 +6,20 @@
 
 package com.skcraft.launcher.creator.controller;
 
+import java.awt.Component;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.swing.JFileChooser;
+import javax.swing.JList;
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.ListeningExecutorService;
@@ -26,15 +40,6 @@ import com.skcraft.launcher.swing.PopupMouseAdapter;
 import com.skcraft.launcher.swing.SwingHelper;
 import com.skcraft.launcher.util.MorePaths;
 import com.skcraft.launcher.util.SwingExecutor;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class WelcomeController {
 

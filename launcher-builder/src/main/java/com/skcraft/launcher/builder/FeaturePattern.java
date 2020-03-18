@@ -8,6 +8,7 @@ package com.skcraft.launcher.builder;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.skcraft.launcher.model.modpack.Feature;
+
 import lombok.Data;
 
 @Data

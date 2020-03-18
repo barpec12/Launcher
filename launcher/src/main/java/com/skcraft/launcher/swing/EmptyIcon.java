@@ -6,8 +6,10 @@
 
 package com.skcraft.launcher.swing;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Component;
+import java.awt.Graphics;
+
+import javax.swing.Icon;
 
 public final class EmptyIcon implements Icon {
 

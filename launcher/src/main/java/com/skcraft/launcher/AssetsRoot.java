@@ -6,22 +6,23 @@
 
 package com.skcraft.launcher;
 
-import com.google.common.io.Files;
-import com.skcraft.concurrency.ProgressObservable;
-import com.skcraft.launcher.model.minecraft.Asset;
-import com.skcraft.launcher.model.minecraft.AssetsIndex;
-import com.skcraft.launcher.model.minecraft.VersionManifest;
-import com.skcraft.launcher.persistence.Persistence;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.extern.java.Log;
+import static com.skcraft.launcher.util.SharedLocale.tr;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 import java.util.logging.Level;
 
-import static com.skcraft.launcher.util.SharedLocale.tr;
+import com.google.common.io.Files;
+import com.skcraft.concurrency.ProgressObservable;
+import com.skcraft.launcher.model.minecraft.Asset;
+import com.skcraft.launcher.model.minecraft.AssetsIndex;
+import com.skcraft.launcher.model.minecraft.VersionManifest;
+import com.skcraft.launcher.persistence.Persistence;
+
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.extern.java.Log;
 
 /**
  * Represents a directory that stores assets for Minecraft. The class has

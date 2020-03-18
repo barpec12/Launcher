@@ -7,6 +7,8 @@
 package com.skcraft.launcher;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.skcraft.launcher.launch.JavaRuntimeFinder;
+
 import lombok.Data;
 
 /**
@@ -22,11 +24,11 @@ import lombok.Data;
 public class Configuration {
 
     private boolean offlineEnabled = false;
+    private String preSetJvmPath = JavaRuntimeFinder.findBestJavaPath();
     private String jvmPath;
     private String jvmArgs;
-    private int minMemory = 1024;
-    private int maxMemory = 0; // Updated in Launcher
-    private int permGen = 256;
+    private Integer memory = 2560; // Updated in Launcher
+    private boolean closeConsole;
     private int windowWidth = 854;
     private int widowHeight = 480;
     private boolean proxyEnabled = false;

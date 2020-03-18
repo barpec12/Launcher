@@ -6,15 +6,16 @@
 
 package com.skcraft.launcher.builder;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.google.common.collect.Lists;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.util.Collection;
 import java.util.EnumSet;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.collect.Lists;
+
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
 public class FnPatternList {

@@ -6,13 +6,13 @@
 
 package com.skcraft.launcher.bootstrap;
 
-import lombok.NonNull;
-import lombok.extern.java.Log;
+import static com.skcraft.launcher.bootstrap.BootstrapUtils.closeQuietly;
+import static com.skcraft.launcher.bootstrap.SharedLocale.tr;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import javax.swing.text.JTextComponent;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Window;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,8 +21,17 @@ import java.io.StringWriter;
 import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static com.skcraft.launcher.bootstrap.BootstrapUtils.closeQuietly;
-import static com.skcraft.launcher.bootstrap.SharedLocale.tr;
+import javax.imageio.ImageIO;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.SwingUtilities;
+import javax.swing.text.JTextComponent;
+
+import lombok.NonNull;
+import lombok.extern.java.Log;
 
 /**
  * Swing utility methods.

@@ -6,8 +6,13 @@
 
 package com.skcraft.launcher.swing;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Component;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
 
 public class FormPanel extends JPanel {
 

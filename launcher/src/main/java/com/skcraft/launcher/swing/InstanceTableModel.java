@@ -6,13 +6,14 @@
 
 package com.skcraft.launcher.swing;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.table.AbstractTableModel;
+
 import com.skcraft.launcher.Instance;
 import com.skcraft.launcher.InstanceList;
 import com.skcraft.launcher.Launcher;
 import com.skcraft.launcher.util.SharedLocale;
-
-import javax.swing.*;
-import javax.swing.table.AbstractTableModel;
 
 public class InstanceTableModel extends AbstractTableModel {
 
@@ -23,9 +24,9 @@ public class InstanceTableModel extends AbstractTableModel {
 
     public InstanceTableModel(InstanceList instances) {
         this.instances = instances;
-        instanceIcon = SwingHelper.createIcon(Launcher.class, "instance_icon.png", 16, 16);
-        customInstanceIcon = SwingHelper.createIcon(Launcher.class, "custom_instance_icon.png", 16, 16);
-        downloadIcon = SwingHelper.createIcon(Launcher.class, "download_icon.png", 14, 14);
+        instanceIcon = SwingHelper.createIcon(Launcher.class, "instance_icon.png", 48, 48);
+        customInstanceIcon = SwingHelper.createIcon(Launcher.class, "custom_instance_icon.png", 48, 48);
+        downloadIcon = SwingHelper.createIcon(Launcher.class, "download_icon.png", 48, 48);
     }
 
     public void update() {

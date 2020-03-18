@@ -6,6 +6,23 @@
 
 package com.skcraft.launcher.update;
 
+import static com.skcraft.launcher.LauncherUtils.checkInterrupted;
+import static com.skcraft.launcher.LauncherUtils.concat;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.logging.Level;
+
+import javax.swing.SwingUtilities;
+
 import com.google.common.base.Strings;
 import com.skcraft.launcher.AssetsRoot;
 import com.skcraft.launcher.Instance;
@@ -13,7 +30,11 @@ import com.skcraft.launcher.Launcher;
 import com.skcraft.launcher.LauncherException;
 import com.skcraft.launcher.dialog.FeatureSelectionDialog;
 import com.skcraft.launcher.dialog.ProgressDialog;
-import com.skcraft.launcher.install.*;
+import com.skcraft.launcher.install.FeatureCache;
+import com.skcraft.launcher.install.FileMover;
+import com.skcraft.launcher.install.InstallLog;
+import com.skcraft.launcher.install.Installer;
+import com.skcraft.launcher.install.UpdateCache;
 import com.skcraft.launcher.model.minecraft.Asset;
 import com.skcraft.launcher.model.minecraft.AssetsIndex;
 import com.skcraft.launcher.model.minecraft.Library;
@@ -25,19 +46,9 @@ import com.skcraft.launcher.persistence.Persistence;
 import com.skcraft.launcher.util.Environment;
 import com.skcraft.launcher.util.HttpRequest;
 import com.skcraft.launcher.util.SharedLocale;
+
 import lombok.NonNull;
 import lombok.extern.java.Log;
-
-import javax.swing.*;
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.*;
-import java.util.logging.Level;
-
-import static com.skcraft.launcher.LauncherUtils.checkInterrupted;
-import static com.skcraft.launcher.LauncherUtils.concat;
 
 /**
  * The base implementation of the various routines involved in downloading

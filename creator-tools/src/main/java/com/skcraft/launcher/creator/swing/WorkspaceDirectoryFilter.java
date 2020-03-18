@@ -6,8 +6,9 @@
 
 package com.skcraft.launcher.creator.swing;
 
-import javax.swing.filechooser.FileFilter;
 import java.io.File;
+
+import javax.swing.filechooser.FileFilter;
 
 public class WorkspaceDirectoryFilter extends FileFilter {
 

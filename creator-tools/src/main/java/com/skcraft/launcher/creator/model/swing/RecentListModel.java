@@ -6,10 +6,11 @@
 
 package com.skcraft.launcher.creator.model.swing;
 
-import com.skcraft.launcher.creator.model.creator.RecentEntry;
-
-import javax.swing.*;
 import java.util.List;
+
+import javax.swing.AbstractListModel;
+
+import com.skcraft.launcher.creator.model.creator.RecentEntry;
 
 public class RecentListModel extends AbstractListModel<RecentEntry> {
 

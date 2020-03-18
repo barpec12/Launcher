@@ -6,23 +6,30 @@
 
 package com.skcraft.launcher.dialog;
 
+import static com.skcraft.launcher.util.SharedLocale.tr;
+
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
+
 import com.skcraft.launcher.Launcher;
 import com.skcraft.launcher.swing.LinedBoxPanel;
 import com.skcraft.launcher.swing.MessageLog;
 import com.skcraft.launcher.swing.SwingHelper;
 import com.skcraft.launcher.util.PastebinPoster;
 import com.skcraft.launcher.util.SharedLocale;
+
 import lombok.Getter;
 import lombok.NonNull;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-
-import static com.skcraft.launcher.util.SharedLocale.tr;
 
 /**
  * A frame capable of showing messages.

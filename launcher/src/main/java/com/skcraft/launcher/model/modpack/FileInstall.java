@@ -6,6 +6,15 @@
 
 package com.skcraft.launcher.model.modpack;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+import static com.skcraft.launcher.LauncherUtils.concat;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+
+import org.apache.commons.io.FilenameUtils;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.google.common.hash.HashFunction;
 import com.google.common.hash.Hashing;
@@ -14,17 +23,10 @@ import com.skcraft.launcher.install.InstallLog;
 import com.skcraft.launcher.install.InstallLogFileMover;
 import com.skcraft.launcher.install.Installer;
 import com.skcraft.launcher.install.UpdateCache;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
-import org.apache.commons.io.FilenameUtils;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-
-import static com.google.common.base.Preconditions.checkNotNull;
-import static com.skcraft.launcher.LauncherUtils.concat;
 
 @Data
 @EqualsAndHashCode(callSuper = false)

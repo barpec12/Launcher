@@ -6,6 +6,21 @@
 
 package com.skcraft.launcher.creator.dialog;
 
+import java.awt.BorderLayout;
+import java.awt.Window;
+import java.awt.event.KeyEvent;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.KeyStroke;
+import javax.swing.WindowConstants;
+
 import com.google.common.base.Strings;
 import com.jidesoft.swing.SearchableUtils;
 import com.jidesoft.swing.TableSearchable;
@@ -16,11 +31,8 @@ import com.skcraft.launcher.creator.model.swing.FeaturePatternTableModel;
 import com.skcraft.launcher.model.modpack.LaunchModifier;
 import com.skcraft.launcher.swing.SwingHelper;
 import com.skcraft.launcher.swing.TextFieldPopupMenu;
-import net.miginfocom.swing.MigLayout;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.KeyEvent;
+import net.miginfocom.swing.MigLayout;
 
 public class BuilderConfigDialog extends JDialog {
 

@@ -6,14 +6,20 @@
 
 package com.skcraft.launcher.builder;
 
-import com.skcraft.launcher.model.modpack.*;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import com.skcraft.launcher.model.modpack.Condition;
+import com.skcraft.launcher.model.modpack.Feature;
+import com.skcraft.launcher.model.modpack.FileInstall;
+import com.skcraft.launcher.model.modpack.Manifest;
+import com.skcraft.launcher.model.modpack.ManifestEntry;
+import com.skcraft.launcher.model.modpack.RequireAny;
+
+import lombok.Getter;
+import lombok.Setter;
 
 public class PropertiesApplicator {
 

@@ -6,6 +6,16 @@
 
 package com.skcraft.launcher.creator;
 
+import java.io.File;
+import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.Executors;
+
+import javax.swing.JFileChooser;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.filechooser.FileSystemView;
+
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
 import com.skcraft.launcher.Launcher;
@@ -16,14 +26,8 @@ import com.skcraft.launcher.creator.model.creator.RecentEntry;
 import com.skcraft.launcher.creator.model.creator.Workspace;
 import com.skcraft.launcher.persistence.Persistence;
 import com.skcraft.launcher.swing.SwingHelper;
-import lombok.Getter;
 
-import javax.swing.*;
-import javax.swing.filechooser.FileSystemView;
-import java.io.File;
-import java.util.Iterator;
-import java.util.List;
-import java.util.concurrent.Executors;
+import lombok.Getter;
 
 public class Creator {
 

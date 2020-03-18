@@ -6,16 +6,17 @@
 
 package com.skcraft.launcher.model.modpack;
 
+import java.io.File;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.skcraft.launcher.install.InstallLog;
 import com.skcraft.launcher.install.Installer;
 import com.skcraft.launcher.install.UpdateCache;
+
 import lombok.Data;
 import lombok.ToString;
-
-import java.io.File;
 
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,

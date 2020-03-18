@@ -6,6 +6,19 @@
 
 package com.skcraft.launcher.creator.controller;
 
+import java.awt.Point;
+import java.awt.Window;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.List;
+
+import javax.annotation.Nullable;
+import javax.swing.JTable;
+
 import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.ListeningExecutorService;
 import com.skcraft.concurrency.Deferred;
@@ -22,17 +35,6 @@ import com.skcraft.launcher.creator.util.NemModList.ModEntry;
 import com.skcraft.launcher.dialog.ProgressDialog;
 import com.skcraft.launcher.swing.SwingHelper;
 import com.skcraft.launcher.util.SwingExecutor;
-
-import javax.annotation.Nullable;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.List;
 
 public class VersionCheckController {
 

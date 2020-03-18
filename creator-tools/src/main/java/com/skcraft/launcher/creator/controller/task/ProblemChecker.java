@@ -6,15 +6,15 @@
 
 package com.skcraft.launcher.creator.controller.task;
 
+import java.io.File;
+import java.util.List;
+import java.util.concurrent.Callable;
+
 import com.beust.jcommander.internal.Lists;
 import com.skcraft.concurrency.ProgressObservable;
 import com.skcraft.launcher.builder.BuilderOptions;
 import com.skcraft.launcher.creator.model.creator.Pack;
 import com.skcraft.launcher.creator.model.creator.Problem;
-
-import java.io.File;
-import java.util.List;
-import java.util.concurrent.Callable;
 
 public class ProblemChecker implements Callable<List<Problem>>, ProgressObservable {
 

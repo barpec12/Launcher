@@ -6,11 +6,11 @@
 
 package com.skcraft.launcher.install;
 
-import com.skcraft.concurrency.ProgressObservable;
-
 import java.io.File;
 import java.net.URL;
 import java.util.List;
+
+import com.skcraft.concurrency.ProgressObservable;
 
 
 public interface Downloader extends ProgressObservable {

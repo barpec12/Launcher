@@ -6,16 +6,29 @@
 
 package com.skcraft.launcher.creator.dialog;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.KeyEvent;
+
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.KeyStroke;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.WindowConstants;
+
 import com.skcraft.launcher.creator.Creator;
 import com.skcraft.launcher.creator.model.creator.RecentEntry;
 import com.skcraft.launcher.creator.swing.BorderCellRenderer;
 import com.skcraft.launcher.swing.SwingHelper;
+
 import lombok.Getter;
 import net.miginfocom.swing.MigLayout;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.KeyEvent;
 
 public class WelcomeDialog extends JFrame {
 

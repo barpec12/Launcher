@@ -6,11 +6,7 @@
 
 package com.skcraft.launcher.creator.controller.task;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
-import com.skcraft.launcher.util.MorePaths;
-import lombok.Getter;
-import lombok.Setter;
+import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -21,7 +17,12 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.Callable;
 
-import static com.google.common.base.Preconditions.checkNotNull;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
+import com.skcraft.launcher.util.MorePaths;
+
+import lombok.Getter;
+import lombok.Setter;
 
 public class DirectoryWalker implements Callable<List<File>> {
 

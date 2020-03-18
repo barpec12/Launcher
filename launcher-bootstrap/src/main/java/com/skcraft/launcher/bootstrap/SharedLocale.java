@@ -6,14 +6,14 @@
 
 package com.skcraft.launcher.bootstrap;
 
-import lombok.NonNull;
-import lombok.extern.java.Log;
-
 import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
+
+import lombok.NonNull;
+import lombok.extern.java.Log;
 
 /**
  * Handles loading a shared message {@link ResourceBundle}.

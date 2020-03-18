@@ -6,11 +6,12 @@
 
 package com.skcraft.launcher.creator.model.creator;
 
+import java.util.List;
+
 import com.google.common.collect.Lists;
 import com.skcraft.launcher.model.modpack.ManifestInfo;
-import lombok.Data;
 
-import java.util.List;
+import lombok.Data;
 
 @Data
 public class ManifestEntry implements Comparable<ManifestEntry> {

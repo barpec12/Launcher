@@ -6,16 +6,27 @@
 
 package com.skcraft.launcher.creator.dialog;
 
+import java.awt.BorderLayout;
+import java.awt.Window;
+import java.awt.event.KeyEvent;
+import java.util.List;
+
+import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
+import javax.swing.JSplitPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.KeyStroke;
+import javax.swing.WindowConstants;
+
 import com.skcraft.launcher.creator.model.creator.Problem;
 import com.skcraft.launcher.creator.model.swing.ProblemTableModel;
 import com.skcraft.launcher.swing.SwingHelper;
 import com.skcraft.launcher.swing.TextFieldPopupMenu;
-import net.miginfocom.swing.MigLayout;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.util.List;
+import net.miginfocom.swing.MigLayout;
 
 public class ProblemViewer extends JDialog {
 

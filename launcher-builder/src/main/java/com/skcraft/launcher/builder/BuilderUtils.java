@@ -6,14 +6,19 @@
 
 package com.skcraft.launcher.builder;
 
-import com.beust.jcommander.internal.Lists;
-import org.apache.commons.compress.compressors.CompressorStreamFactory;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.Enumeration;
+import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
+
+import org.apache.commons.compress.compressors.CompressorStreamFactory;
+
+import com.beust.jcommander.internal.Lists;
 
 public final class BuilderUtils {
 

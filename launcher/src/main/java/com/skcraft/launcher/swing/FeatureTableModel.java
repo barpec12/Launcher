@@ -6,11 +6,12 @@
 
 package com.skcraft.launcher.swing;
 
-import com.skcraft.launcher.model.modpack.Feature;
-import com.skcraft.launcher.util.SharedLocale;
+import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
-import java.util.List;
+
+import com.skcraft.launcher.model.modpack.Feature;
+import com.skcraft.launcher.util.SharedLocale;
 
 public class FeatureTableModel extends AbstractTableModel {
 

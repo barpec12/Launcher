@@ -6,7 +6,7 @@
 
 package com.skcraft.launcher.swing;
 
-import javax.swing.*;
+import javax.swing.JCheckBox;
 import javax.swing.table.TableModel;
 
 public class CheckboxTable extends DefaultTable {

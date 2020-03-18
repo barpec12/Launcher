@@ -6,15 +6,15 @@
 
 package com.skcraft.launcher.creator.controller.task;
 
-import com.skcraft.concurrency.ProgressObservable;
-import com.skcraft.launcher.LauncherException;
-import com.skcraft.launcher.LauncherUtils;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
+
+import com.skcraft.concurrency.ProgressObservable;
+import com.skcraft.launcher.LauncherException;
+import com.skcraft.launcher.LauncherUtils;
 
 public class DirectoryDeleter implements Callable<File>, ProgressObservable {
 

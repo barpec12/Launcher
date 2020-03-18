@@ -6,12 +6,13 @@
 
 package com.skcraft.launcher.persistence;
 
-import com.google.common.io.ByteSource;
+import java.io.IOException;
+import java.io.InputStream;
 
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+
+import com.google.common.io.ByteSource;
 
 class ScramblingSourceFilter extends ByteSource {
 

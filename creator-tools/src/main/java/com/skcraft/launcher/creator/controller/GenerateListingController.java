@@ -6,6 +6,18 @@
 
 package com.skcraft.launcher.creator.controller;
 
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 import com.google.common.io.Files;
@@ -23,16 +35,6 @@ import com.skcraft.launcher.dialog.ProgressDialog;
 import com.skcraft.launcher.persistence.Persistence;
 import com.skcraft.launcher.swing.SwingHelper;
 import com.skcraft.launcher.util.SwingExecutor;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class GenerateListingController {
 

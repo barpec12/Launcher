@@ -6,18 +6,34 @@
 
 package com.skcraft.launcher.dialog;
 
-import com.skcraft.launcher.model.modpack.Feature;
-import com.skcraft.launcher.swing.*;
-import com.skcraft.launcher.util.SharedLocale;
-import lombok.NonNull;
+import static javax.swing.BorderFactory.createEmptyBorder;
 
-import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Window;
 import java.util.List;
 
-import static javax.swing.BorderFactory.createEmptyBorder;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.JTextArea;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
+import com.skcraft.launcher.model.modpack.Feature;
+import com.skcraft.launcher.swing.ActionListeners;
+import com.skcraft.launcher.swing.CheckboxTable;
+import com.skcraft.launcher.swing.FeatureTableModel;
+import com.skcraft.launcher.swing.LinedBoxPanel;
+import com.skcraft.launcher.swing.SwingHelper;
+import com.skcraft.launcher.swing.TextFieldPopupMenu;
+import com.skcraft.launcher.util.SharedLocale;
+
+import lombok.NonNull;
 
 public class FeatureSelectionDialog extends JDialog {
 

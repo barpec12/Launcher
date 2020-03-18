@@ -6,19 +6,22 @@
 
 package com.skcraft.launcher.auth;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.swing.AbstractListModel;
+import javax.swing.ComboBoxModel;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.skcraft.launcher.persistence.Scrambled;
+
 import lombok.Getter;
 import lombok.NonNull;
-
-import javax.swing.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * A list of accounts that can be stored to disk.

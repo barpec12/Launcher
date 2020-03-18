@@ -6,9 +6,10 @@
 
 package com.skcraft.launcher.creator.model.swing;
 
-import com.skcraft.launcher.model.modpack.Feature.Recommendation;
+import javax.swing.AbstractListModel;
+import javax.swing.ComboBoxModel;
 
-import javax.swing.*;
+import com.skcraft.launcher.model.modpack.Feature.Recommendation;
 
 public class RecommendationComboBoxModel extends AbstractListModel implements ComboBoxModel {
 

@@ -6,28 +6,55 @@
 
 package com.skcraft.launcher;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+
+import javax.imageio.ImageIO;
+import javax.swing.JPanel;
 
 public class FancyBackgroundPanel extends JPanel {
 
     private Image background;
-
+    private Image borders;
+    private Image logo;
+    
     public FancyBackgroundPanel() {
         try {
-            background = ImageIO.read(FancyBackgroundPanel.class.getResourceAsStream("launcher_bg.jpg"));
+            background = ImageIO.read(FancyBackgroundPanel.class.getResourceAsStream("launcher_bg.png"));
         } catch (IOException e) {
             background = null;
         }
+        
+        try {
+            borders = ImageIO.read(FancyBackgroundPanel.class.getResourceAsStream("borders.png"));
+        } catch (IOException e) {
+            borders = null;
+        }
+        
+        try {
+        	logo = ImageIO.read(FancyBackgroundPanel.class.getResourceAsStream("logo.png"));
+        } catch (IOException e) {
+        	logo = null;
+        }
+        
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         if (background != null) {
-            g.drawImage(background, 0, 0, null);
+            g.drawImage(background, 212, -103, null);
+        }
+        
+        if(borders != null){
+        	g.drawImage(borders, 0, 0, null);
+        }
+        
+        if(logo != null) {
+        	g.drawImage(logo, 431, 38, null);
         }
     }
 

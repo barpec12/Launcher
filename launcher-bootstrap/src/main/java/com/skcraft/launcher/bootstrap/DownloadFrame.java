@@ -6,11 +6,10 @@
 
 package com.skcraft.launcher.bootstrap;
 
-import com.skcraft.launcher.Bootstrap;
-import lombok.extern.java.Log;
+import static com.skcraft.launcher.bootstrap.SharedLocale.tr;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -18,7 +17,18 @@ import java.awt.event.WindowEvent;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import static com.skcraft.launcher.bootstrap.SharedLocale.tr;
+import javax.swing.BorderFactory;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
+
+import com.skcraft.launcher.Bootstrap;
+
+import lombok.extern.java.Log;
 
 @Log
 public class DownloadFrame extends JFrame {

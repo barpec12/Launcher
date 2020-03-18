@@ -6,6 +6,27 @@
 
 package com.skcraft.launcher.creator.controller;
 
+import java.awt.Component;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.regex.Pattern;
+
+import javax.swing.JFileChooser;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
+import javax.swing.JTable;
+
 import com.google.common.base.Optional;
 import com.google.common.base.Strings;
 import com.google.common.collect.ImmutableList;
@@ -21,11 +42,28 @@ import com.skcraft.launcher.auth.Session;
 import com.skcraft.launcher.builder.BuilderConfig;
 import com.skcraft.launcher.builder.FnPatternList;
 import com.skcraft.launcher.creator.Creator;
-import com.skcraft.launcher.creator.model.creator.*;
-import com.skcraft.launcher.creator.controller.task.*;
-import com.skcraft.launcher.creator.dialog.*;
+import com.skcraft.launcher.creator.controller.task.DirectoryDeleter;
+import com.skcraft.launcher.creator.controller.task.ManifestInfoEnumerator;
+import com.skcraft.launcher.creator.controller.task.PackBuilder;
+import com.skcraft.launcher.creator.controller.task.PackLoader;
+import com.skcraft.launcher.creator.controller.task.ProblemChecker;
+import com.skcraft.launcher.creator.controller.task.ServerDeploy;
+import com.skcraft.launcher.creator.controller.task.TestLauncher;
+import com.skcraft.launcher.creator.dialog.AboutDialog;
+import com.skcraft.launcher.creator.dialog.BuildDialog;
 import com.skcraft.launcher.creator.dialog.BuildDialog.BuildOptions;
+import com.skcraft.launcher.creator.dialog.BuilderConfigDialog;
+import com.skcraft.launcher.creator.dialog.DeployServerDialog;
 import com.skcraft.launcher.creator.dialog.DeployServerDialog.DeployOptions;
+import com.skcraft.launcher.creator.dialog.GenerateListingDialog;
+import com.skcraft.launcher.creator.dialog.PackManagerFrame;
+import com.skcraft.launcher.creator.dialog.ProblemViewer;
+import com.skcraft.launcher.creator.dialog.VersionCheckDialog;
+import com.skcraft.launcher.creator.model.creator.CreatorConfig;
+import com.skcraft.launcher.creator.model.creator.ManifestEntry;
+import com.skcraft.launcher.creator.model.creator.Pack;
+import com.skcraft.launcher.creator.model.creator.Problem;
+import com.skcraft.launcher.creator.model.creator.Workspace;
 import com.skcraft.launcher.creator.model.swing.PackTableModel;
 import com.skcraft.launcher.creator.server.TestServer;
 import com.skcraft.launcher.creator.server.TestServerBuilder;
@@ -40,22 +78,8 @@ import com.skcraft.launcher.swing.PopupMouseAdapter;
 import com.skcraft.launcher.swing.SwingHelper;
 import com.skcraft.launcher.util.MorePaths;
 import com.skcraft.launcher.util.SwingExecutor;
-import lombok.Getter;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.File;
-import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.regex.Pattern;
+import lombok.Getter;
 
 public class PackManagerController {
 

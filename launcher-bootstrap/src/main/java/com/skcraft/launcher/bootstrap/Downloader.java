@@ -6,12 +6,9 @@
 
 package com.skcraft.launcher.bootstrap;
 
-import com.skcraft.launcher.Bootstrap;
-import lombok.extern.java.Log;
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
+import static com.skcraft.launcher.bootstrap.BootstrapUtils.checkInterrupted;
+import static com.skcraft.launcher.bootstrap.SharedLocale.tr;
 
-import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -19,8 +16,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
-import static com.skcraft.launcher.bootstrap.BootstrapUtils.checkInterrupted;
-import static com.skcraft.launcher.bootstrap.SharedLocale.tr;
+import javax.swing.SwingUtilities;
+
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+
+import com.skcraft.launcher.Bootstrap;
+
+import lombok.extern.java.Log;
 
 @Log
 public class Downloader implements Runnable, ProgressObservable {

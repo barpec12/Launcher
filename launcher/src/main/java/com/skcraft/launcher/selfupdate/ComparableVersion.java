@@ -18,7 +18,14 @@
  */
 package com.skcraft.launcher.selfupdate;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+import java.util.Locale;
+import java.util.Properties;
+import java.util.Stack;
 
 /**
  * Generic implementation of version comparison.

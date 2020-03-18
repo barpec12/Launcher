@@ -6,7 +6,7 @@
 
 package com.skcraft.launcher.util;
 
-import javax.swing.*;
+import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;

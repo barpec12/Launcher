@@ -6,6 +6,22 @@
 
 package com.skcraft.launcher.creator.dialog;
 
+import java.awt.BorderLayout;
+import java.awt.Window;
+import java.awt.event.KeyEvent;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.KeyStroke;
+import javax.swing.WindowConstants;
+
 import com.google.common.base.Joiner;
 import com.skcraft.launcher.builder.FeaturePattern;
 import com.skcraft.launcher.builder.FnPatternList;
@@ -14,11 +30,8 @@ import com.skcraft.launcher.model.modpack.Feature;
 import com.skcraft.launcher.model.modpack.Feature.Recommendation;
 import com.skcraft.launcher.swing.SwingHelper;
 import com.skcraft.launcher.swing.TextFieldPopupMenu;
-import net.miginfocom.swing.MigLayout;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.KeyEvent;
+import net.miginfocom.swing.MigLayout;
 
 public class FeaturePatternDialog extends JDialog {
 

@@ -6,11 +6,12 @@
 
 package com.skcraft.launcher.creator.model.swing;
 
-import com.google.common.base.Joiner;
-import com.skcraft.launcher.creator.model.creator.ManifestEntry;
+import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
-import java.util.List;
+
+import com.google.common.base.Joiner;
+import com.skcraft.launcher.creator.model.creator.ManifestEntry;
 
 public class ManifestEntryTableModel extends AbstractTableModel {
 

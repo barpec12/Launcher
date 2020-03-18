@@ -6,10 +6,11 @@
 
 package com.skcraft.launcher.creator.model.swing;
 
-import com.skcraft.launcher.builder.FeaturePattern;
+import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
-import java.util.List;
+
+import com.skcraft.launcher.builder.FeaturePattern;
 
 public class FeaturePatternTableModel extends AbstractTableModel {
 

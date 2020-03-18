@@ -6,19 +6,25 @@
 
 package com.skcraft.launcher.install;
 
-import com.google.common.io.ByteSource;
-import com.google.common.io.Closer;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.Setter;
-import org.apache.commons.io.IOUtils;
+import static org.apache.commons.io.IOUtils.closeQuietly;
 
-import java.io.*;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import static org.apache.commons.io.IOUtils.closeQuietly;
+import org.apache.commons.io.IOUtils;
+
+import com.google.common.io.ByteSource;
+import com.google.common.io.Closer;
+
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
 
 public class ZipExtract implements Runnable {
 

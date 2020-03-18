@@ -6,8 +6,11 @@
 
 package com.skcraft.launcher.swing;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Dimension;
+
+import javax.swing.JCheckBox;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 
 /**
  * The default table style used throughout the launcher.

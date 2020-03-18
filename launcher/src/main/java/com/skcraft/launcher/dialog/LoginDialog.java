@@ -6,6 +6,34 @@
 
 package com.skcraft.launcher.dialog;
 
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.IOException;
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.Callable;
+
+import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JMenuItem;
+import javax.swing.JPasswordField;
+import javax.swing.JPopupMenu;
+import javax.swing.WindowConstants;
+
 import com.google.common.base.Strings;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
@@ -13,21 +41,25 @@ import com.skcraft.concurrency.ObservableFuture;
 import com.skcraft.concurrency.ProgressObservable;
 import com.skcraft.launcher.Configuration;
 import com.skcraft.launcher.Launcher;
-import com.skcraft.launcher.auth.*;
-import com.skcraft.launcher.swing.*;
+import com.skcraft.launcher.auth.Account;
+import com.skcraft.launcher.auth.AccountList;
+import com.skcraft.launcher.auth.AuthenticationException;
+import com.skcraft.launcher.auth.LoginService;
+import com.skcraft.launcher.auth.OfflineSession;
+import com.skcraft.launcher.auth.Session;
 import com.skcraft.launcher.persistence.Persistence;
+import com.skcraft.launcher.swing.ActionListeners;
+import com.skcraft.launcher.swing.FormPanel;
+import com.skcraft.launcher.swing.LinedBoxPanel;
+import com.skcraft.launcher.swing.LinkButton;
+import com.skcraft.launcher.swing.PopupMouseAdapter;
+import com.skcraft.launcher.swing.SwingHelper;
+import com.skcraft.launcher.swing.TextFieldPopupMenu;
 import com.skcraft.launcher.util.SharedLocale;
 import com.skcraft.launcher.util.SwingExecutor;
+
 import lombok.Getter;
 import lombok.NonNull;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.io.IOException;
-import java.util.Date;
-import java.util.List;
-import java.util.concurrent.Callable;
 
 /**
  * The login dialog.
@@ -100,12 +132,9 @@ public class LoginDialog extends JDialog {
         formPanel.addRow(new JLabel(SharedLocale.tr("login.password")), passwordText);
         formPanel.addRow(new JLabel(), rememberIdCheck);
         formPanel.addRow(new JLabel(), rememberPassCheck);
+		formPanel.addRow(new JLabel("                 Obs: Se quiser logar como Pirata, deixe a senha vazia"));
         buttonsPanel.setBorder(BorderFactory.createEmptyBorder(26, 13, 13, 13));
 
-        if (launcher.getConfig().isOfflineEnabled()) {
-            buttonsPanel.addElement(offlineButton);
-            buttonsPanel.addElement(Box.createHorizontalStrut(2));
-        }
         buttonsPanel.addElement(recoverButton);
         buttonsPanel.addGlue();
         buttonsPanel.addElement(loginButton);
@@ -256,7 +285,17 @@ public class LoginDialog extends JDialog {
             String password = passwordText.getText();
 
             if (password == null || password.isEmpty()) {
-                SwingHelper.showErrorDialog(this, SharedLocale.tr("login.noPasswordError"), SharedLocale.tr("login.noPasswordTitle"));
+            	if (rememberIdCheck.isSelected()) {
+                    accounts.add(account);
+                } else {
+                    accounts.remove(account);
+                }
+                account.setLastUsed(new Date());
+                Persistence.commitAndForget(accounts);
+                setResult(new OfflineSession(account.toString()));
+                removeListeners();
+                dispose();
+				return;
             } else {
                 if (rememberPassCheck.isSelected()) {
                     account.setPassword(password);

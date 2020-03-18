@@ -6,11 +6,11 @@
 
 package com.skcraft.launcher.persistence;
 
-import com.google.common.io.ByteSink;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
+
+import com.google.common.io.ByteSink;
 
 class MkdirByteSink extends ByteSink {
 

@@ -6,6 +6,14 @@
 
 package com.skcraft.launcher.update;
 
+import java.awt.Window;
+import java.beans.PropertyChangeListener;
+import java.io.File;
+import java.net.URL;
+
+import javax.swing.JOptionPane;
+import javax.swing.event.SwingPropertyChangeSupport;
+
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -17,14 +25,8 @@ import com.skcraft.launcher.selfupdate.UpdateChecker;
 import com.skcraft.launcher.swing.SwingHelper;
 import com.skcraft.launcher.util.SharedLocale;
 import com.skcraft.launcher.util.SwingExecutor;
-import lombok.Getter;
 
-import javax.swing.*;
-import javax.swing.event.SwingPropertyChangeSupport;
-import java.awt.*;
-import java.beans.PropertyChangeListener;
-import java.io.File;
-import java.net.URL;
+import lombok.Getter;
 
 public class UpdateManager {
 

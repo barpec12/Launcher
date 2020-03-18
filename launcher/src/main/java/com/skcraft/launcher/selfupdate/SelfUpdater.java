@@ -6,19 +6,20 @@
 
 package com.skcraft.launcher.selfupdate;
 
+import java.io.File;
+import java.net.URL;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 import com.skcraft.concurrency.DefaultProgress;
 import com.skcraft.concurrency.ProgressObservable;
 import com.skcraft.launcher.Launcher;
 import com.skcraft.launcher.install.FileMover;
 import com.skcraft.launcher.install.Installer;
 import com.skcraft.launcher.util.SharedLocale;
-import lombok.NonNull;
 
-import java.io.File;
-import java.net.URL;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import lombok.NonNull;
 
 public class SelfUpdater implements Callable<File>, ProgressObservable {
 

@@ -6,13 +6,10 @@
 
 package com.skcraft.launcher.swing;
 
-import com.skcraft.launcher.LauncherUtils;
-import com.skcraft.launcher.util.LimitLinesDocumentListener;
-import com.skcraft.launcher.util.SimpleLogFormatter;
+import static org.apache.commons.io.IOUtils.closeQuietly;
 
-import javax.swing.*;
-import javax.swing.text.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,7 +19,23 @@ import java.util.logging.Level;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
-import static org.apache.commons.io.IOUtils.closeQuietly;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextPane;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingUtilities;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultCaret;
+import javax.swing.text.Document;
+import javax.swing.text.JTextComponent;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+
+import com.skcraft.launcher.util.LimitLinesDocumentListener;
+import com.skcraft.launcher.util.SimpleLogFormatter;
 
 /**
  * A simple message log.

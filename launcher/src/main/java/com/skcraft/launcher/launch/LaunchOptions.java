@@ -6,14 +6,15 @@
 
 package com.skcraft.launcher.launch;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
+import java.awt.Window;
+
 import com.skcraft.launcher.Instance;
 import com.skcraft.launcher.auth.Session;
+
 import lombok.Data;
 import lombok.Getter;
-
-import java.awt.*;
-
-import static com.google.common.base.Preconditions.checkNotNull;
 
 @Data
 public class LaunchOptions {

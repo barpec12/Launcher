@@ -6,6 +6,19 @@
 
 package com.skcraft.launcher.launch;
 
+import static com.google.common.util.concurrent.MoreExecutors.sameThreadExecutor;
+import static com.skcraft.launcher.util.SharedLocale.tr;
+
+import java.awt.Window;
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+import java.util.logging.Level;
+
+import javax.swing.SwingUtilities;
+
+import org.apache.commons.io.FileUtils;
+
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
@@ -21,18 +34,8 @@ import com.skcraft.launcher.swing.SwingHelper;
 import com.skcraft.launcher.update.Updater;
 import com.skcraft.launcher.util.SharedLocale;
 import com.skcraft.launcher.util.SwingExecutor;
+
 import lombok.extern.java.Log;
-import org.apache.commons.io.FileUtils;
-
-import javax.swing.*;
-import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import java.util.Date;
-import java.util.logging.Level;
-
-import static com.google.common.util.concurrent.MoreExecutors.sameThreadExecutor;
-import static com.skcraft.launcher.util.SharedLocale.tr;
 
 @Log
 public class LaunchSupervisor {

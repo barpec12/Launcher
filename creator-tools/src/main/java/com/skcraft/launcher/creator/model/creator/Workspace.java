@@ -6,14 +6,15 @@
 
 package com.skcraft.launcher.creator.model.creator;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.google.common.collect.Lists;
-import com.skcraft.launcher.creator.model.swing.ListingType;
-import lombok.Data;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.common.collect.Lists;
+import com.skcraft.launcher.creator.model.swing.ListingType;
+
+import lombok.Data;
 
 @Data
 public class Workspace {

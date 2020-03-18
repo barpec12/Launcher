@@ -6,11 +6,11 @@
 
 package com.skcraft.launcher.model.modpack;
 
-import lombok.Data;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import lombok.Data;
 
 @Data
 public class RequireAll implements Condition {

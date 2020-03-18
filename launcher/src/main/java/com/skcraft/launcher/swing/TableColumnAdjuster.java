@@ -6,21 +6,25 @@
 
 package com.skcraft.launcher.swing;
 
-import lombok.Getter;
-import lombok.Setter;
+import java.awt.Component;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.util.HashMap;
+import java.util.Map;
 
-import javax.swing.*;
+import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
+import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
-import java.awt.*;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.util.HashMap;
-import java.util.Map;
+
+import lombok.Getter;
+import lombok.Setter;
 
 /*
  *	Class to manage the widths of colunmns in a table.

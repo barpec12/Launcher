@@ -6,16 +6,16 @@
 
 package com.skcraft.launcher.launch;
 
-import com.skcraft.launcher.util.Environment;
-import com.skcraft.launcher.util.Platform;
-import com.skcraft.launcher.util.WinRegistry;
-
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import com.skcraft.launcher.util.Environment;
+import com.skcraft.launcher.util.Platform;
+import com.skcraft.launcher.util.WinRegistry;
 
 /**
  * Finds the best Java runtime to use.
@@ -30,7 +30,60 @@ public final class JavaRuntimeFinder {
      *
      * @return the JVM location, or null
      */
-    public static File findBestJavaPath() {
+    
+    public static List<JREEntry> getAllJavaPaths(){
+    	if (Environment.getInstance().getPlatform() != Platform.WINDOWS) {
+            return null;
+        }
+        
+        List<JREEntry> entries = new ArrayList<JREEntry>();
+        try {
+            getEntriesFromRegistry(entries, "SOFTWARE\\JavaSoft\\Java Runtime Environment");
+            getEntriesFromRegistry(entries, "SOFTWARE\\JavaSoft\\Java Development Kit");
+        } catch (Throwable ignored) {
+        }
+        Collections.sort(entries);
+        
+        if (entries.size() > 0) {
+            return entries;
+        }
+        
+        return null;
+    }
+    
+    public static List<String> getAllJavaNames(){
+    	boolean alreadyAddedTest = false;
+    	List<JREEntry> alreadyAdded = new ArrayList<JREEntry>();
+    	List<String> javaVersions = new ArrayList<String>();
+    	if(getAllJavaPaths() == null) return null;
+    	for(JREEntry entry : getAllJavaPaths()){
+    		alreadyAddedTest = false;
+    		for(JREEntry alreadyAdd : alreadyAdded){
+    			if(entry.dir.getAbsolutePath().equals(alreadyAdd.dir.getAbsolutePath())){
+    				alreadyAddedTest = true;
+    			}
+    		}
+    		if(alreadyAddedTest) continue;
+    		alreadyAdded.add(entry);
+    		javaVersions.add(entry.version + " " + (entry.is64Bit ? "(64-Bit)" : "(32-Bit)"));
+    	}
+    	if(javaVersions.size() > 0) {
+    		return javaVersions;
+    	}
+    	return null;
+    }
+    
+    public static String getPathFromName(String name){
+    	if(getAllJavaPaths() == null) return null;
+    	for(JREEntry entry : getAllJavaPaths()){
+    		if(name.equals(entry.version + " " + (entry.is64Bit ? "(64-Bit)" : "(32-Bit)"))) {
+    			return entry.dir.toString();
+    		}
+    	}
+    	return null;
+    }
+    
+    public static String findBestJavaPath() {
         if (Environment.getInstance().getPlatform() != Platform.WINDOWS) {
             return null;
         }
@@ -44,7 +97,10 @@ public final class JavaRuntimeFinder {
         Collections.sort(entries);
         
         if (entries.size() > 0) {
-            return new File(entries.get(0).dir, "bin");
+        	for(JREEntry entry : entries){
+        		if(entry.is64Bit) return entry.dir.toString();
+        	}
+            return entries.get(0).dir.toString();
         }
         
         return null;
@@ -52,18 +108,25 @@ public final class JavaRuntimeFinder {
     
     private static void getEntriesFromRegistry(List<JREEntry> entries, String basePath)
             throws IllegalArgumentException, IllegalAccessException, InvocationTargetException {
-        List<String> subKeys = WinRegistry.readStringSubKeys(WinRegistry.HKEY_LOCAL_MACHINE, basePath);
-        for (String subKey : subKeys) {
-            JREEntry entry = getEntryFromRegistry(basePath, subKey);
+        List<String> subKeys64 = WinRegistry.readStringSubKeys(WinRegistry.HKEY_LOCAL_MACHINE, basePath, WinRegistry.KEY_WOW64_64KEY);
+        List<String> subKeys32 = WinRegistry.readStringSubKeys(WinRegistry.HKEY_LOCAL_MACHINE, basePath, WinRegistry.KEY_WOW64_32KEY);
+        for (String subKey : subKeys64) {
+            JREEntry entry = getEntryFromRegistry(basePath, subKey, WinRegistry.KEY_WOW64_64KEY);
+            if (entry != null) {
+                entries.add(entry);
+            }
+        }
+        for (String subKey : subKeys32) {
+            JREEntry entry = getEntryFromRegistry(basePath, subKey, WinRegistry.KEY_WOW64_32KEY);
             if (entry != null) {
                 entries.add(entry);
             }
         }
     }
     
-    private static JREEntry getEntryFromRegistry(String basePath, String version)  throws IllegalArgumentException, IllegalAccessException, InvocationTargetException {
+    private static JREEntry getEntryFromRegistry(String basePath, String version, int bits)  throws IllegalArgumentException, IllegalAccessException, InvocationTargetException {
         String regPath = basePath + "\\" + version;
-        String path = WinRegistry.readString(WinRegistry.HKEY_LOCAL_MACHINE, regPath, "JavaHome");
+        String path = WinRegistry.readString(WinRegistry.HKEY_LOCAL_MACHINE, regPath, "JavaHome", bits);
         File dir = new File(path);
         if (dir.exists() && new File(dir, "bin/java.exe").exists()) {
             JREEntry entry = new JREEntry();

@@ -6,10 +6,10 @@
 
 package com.skcraft.launcher.install;
 
-import lombok.Data;
-
 import java.util.HashMap;
 import java.util.Map;
+
+import lombok.Data;
 
 @Data
 public class FeatureCache {

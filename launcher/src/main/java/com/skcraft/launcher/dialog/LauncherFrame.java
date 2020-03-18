@@ -6,6 +6,34 @@
 
 package com.skcraft.launcher.dialog;
 
+import static com.skcraft.launcher.util.SharedLocale.tr;
+
+import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.io.File;
+import java.lang.ref.WeakReference;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.SwingUtilities;
+import javax.swing.WindowConstants;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+
 import com.skcraft.concurrency.ObservableFuture;
 import com.skcraft.launcher.Instance;
 import com.skcraft.launcher.InstanceList;
@@ -13,27 +41,21 @@ import com.skcraft.launcher.Launcher;
 import com.skcraft.launcher.launch.LaunchListener;
 import com.skcraft.launcher.launch.LaunchOptions;
 import com.skcraft.launcher.launch.LaunchOptions.UpdatePolicy;
-import com.skcraft.launcher.swing.*;
+import com.skcraft.launcher.swing.ActionListeners;
+import com.skcraft.launcher.swing.CustomImageButton;
+import com.skcraft.launcher.swing.DoubleClickToButtonAdapter;
+import com.skcraft.launcher.swing.InstanceTable;
+import com.skcraft.launcher.swing.InstanceTableModel;
+import com.skcraft.launcher.swing.PopupMouseAdapter;
+import com.skcraft.launcher.swing.SwingHelper;
+import com.skcraft.launcher.swing.WebpagePanel;
 import com.skcraft.launcher.util.SharedLocale;
 import com.skcraft.launcher.util.SwingExecutor;
+
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.extern.java.Log;
 import net.miginfocom.swing.MigLayout;
-
-import javax.swing.*;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.io.File;
-import java.lang.ref.WeakReference;
-
-import static com.skcraft.launcher.util.SharedLocale.tr;
 
 /**
  * The main launcher frame.
@@ -50,10 +72,12 @@ public class LauncherFrame extends JFrame {
     private final JScrollPane instanceScroll = new JScrollPane(instancesTable);
     private WebpagePanel webView;
     private JSplitPane splitPane;
-    private final JButton launchButton = new JButton(SharedLocale.tr("launcher.launch"));
-    private final JButton refreshButton = new JButton(SharedLocale.tr("launcher.checkForUpdates"));
-    private final JButton optionsButton = new JButton(SharedLocale.tr("launcher.options"));
-    private final JButton selfUpdateButton = new JButton(SharedLocale.tr("launcher.updateLauncher"));
+    private final JButton launchButton = new CustomImageButton(SwingHelper.createIcon(Launcher.class, SharedLocale.tr("launcher.imagename.play"), 96, 39), SwingHelper.createIcon(Launcher.class, SharedLocale.tr("launcher.imagename.playHover"), 96, 39));
+    private final JButton refreshButton = new CustomImageButton(SwingHelper.createIcon(Launcher.class, "refresh.png", 39, 39), SwingHelper.createIcon(Launcher.class, "refresh_hover.png", 39, 39));
+    private final JButton discord = new CustomImageButton(SwingHelper.createIcon(Launcher.class, "discord.png", 42, 31), SwingHelper.createIcon(Launcher.class, "discord_hover.png", 42, 31));
+    private final JButton loja = new CustomImageButton(SwingHelper.createIcon(Launcher.class, "loja.png", 36, 31), SwingHelper.createIcon(Launcher.class, "loja_hover.png", 36, 31));
+    private final JButton optionsButton = new CustomImageButton(SwingHelper.createIcon(Launcher.class, SharedLocale.tr("launcher.imagename.config"), 165, 39), SwingHelper.createIcon(Launcher.class, SharedLocale.tr("launcher.imagename.configHover"), 165, 39));
+    private final JButton selfUpdateButton = new CustomImageButton(SwingHelper.createIcon(Launcher.class, SharedLocale.tr("launcher.imagename.update"), 220, 39), SwingHelper.createIcon(Launcher.class, SharedLocale.tr("launcher.imagename.updateHover"), 220, 39));
     private final JCheckBox updateCheck = new JCheckBox(SharedLocale.tr("launcher.downloadUpdates"));
 
     /**
@@ -63,16 +87,16 @@ public class LauncherFrame extends JFrame {
      */
     public LauncherFrame(@NonNull Launcher launcher) {
         super(tr("launcher.title", launcher.getVersion()));
-
+        
         this.launcher = launcher;
         instancesModel = new InstanceTableModel(launcher.getInstances());
-
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new Dimension(400, 300));
+        setMinimumSize(new Dimension(1194, 718));
+		setResizable(false);
         initComponents();
         pack();
         setLocationRelativeTo(null);
-
+        
         SwingHelper.setFrameIcon(this, Launcher.class, "icon.png");
 
         SwingUtilities.invokeLater(new Runnable() {
@@ -85,18 +109,19 @@ public class LauncherFrame extends JFrame {
 
     private void initComponents() {
         JPanel container = createContainerPanel();
-        container.setLayout(new MigLayout("fill, insets dialog", "[][]push[][]", "[grow][]"));
+        container.setLayout(new MigLayout("fill, insets dialog", "[][][]push[][]", "[grow][]"));
 
         webView = createNewsPanel();
+        
         splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, instanceScroll, webView);
         selfUpdateButton.setVisible(launcher.getUpdateManager().getPendingUpdate());
+        updateCheck.setVisible(false);
 
         launcher.getUpdateManager().addPropertyChangeListener(new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
                 if (evt.getPropertyName().equals("pendingUpdate")) {
-                    selfUpdateButton.setVisible((Boolean) evt.getNewValue());
-
+                	selfUpdateButton.setVisible((Boolean) evt.getNewValue());
                 }
             }
         });
@@ -105,16 +130,18 @@ public class LauncherFrame extends JFrame {
         instancesTable.setModel(instancesModel);
         launchButton.setFont(launchButton.getFont().deriveFont(Font.BOLD));
         splitPane.setDividerLocation(200);
-        splitPane.setDividerSize(4);
+        splitPane.setDividerSize(0);
         splitPane.setOpaque(false);
         container.add(splitPane, "grow, wrap, span 5, gapbottom unrel, w null:680, h null:350");
         SwingHelper.flattenJSplitPane(splitPane);
         container.add(refreshButton);
-        container.add(updateCheck);
+        container.add(discord);
+        container.add(loja);
         container.add(selfUpdateButton);
+        container.add(updateCheck);
         container.add(optionsButton);
         container.add(launchButton);
-
+        
         add(container, BorderLayout.CENTER);
 
         instancesModel.addTableModelListener(new TableModelListener() {
@@ -126,6 +153,9 @@ public class LauncherFrame extends JFrame {
             }
         });
 
+        discord.addActionListener(ActionListeners.openURL(this, "https://discordapp.com/invite/bwHY3WK"));
+        loja.addActionListener(ActionListeners.openURL(this, "https://aetherismc.buycraft.net/"));
+        
         instancesTable.addMouseListener(new DoubleClickToButtonAdapter(launchButton));
 
         refreshButton.addActionListener(new ActionListener() {
@@ -213,32 +243,6 @@ public class LauncherFrame extends JFrame {
                 menuItem = new JMenuItem(SharedLocale.tr("instance.openFolder"));
                 menuItem.addActionListener(ActionListeners.browseDir(
                         LauncherFrame.this, selected.getContentDir(), true));
-                popup.add(menuItem);
-
-                menuItem = new JMenuItem(SharedLocale.tr("instance.openSaves"));
-                menuItem.addActionListener(ActionListeners.browseDir(
-                        LauncherFrame.this, new File(selected.getContentDir(), "saves"), true));
-                popup.add(menuItem);
-
-                menuItem = new JMenuItem(SharedLocale.tr("instance.openResourcePacks"));
-                menuItem.addActionListener(ActionListeners.browseDir(
-                        LauncherFrame.this, new File(selected.getContentDir(), "resourcepacks"), true));
-                popup.add(menuItem);
-
-                menuItem = new JMenuItem(SharedLocale.tr("instance.openScreenshots"));
-                menuItem.addActionListener(ActionListeners.browseDir(
-                        LauncherFrame.this, new File(selected.getContentDir(), "screenshots"), true));
-                popup.add(menuItem);
-
-                menuItem = new JMenuItem(SharedLocale.tr("instance.copyAsPath"));
-                menuItem.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        File dir = selected.getContentDir();
-                        dir.mkdirs();
-                        SwingHelper.setClipboard(dir.getAbsolutePath());
-                    }
-                });
                 popup.add(menuItem);
 
                 popup.addSeparator();

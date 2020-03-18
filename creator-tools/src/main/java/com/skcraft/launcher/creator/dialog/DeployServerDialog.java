@@ -6,16 +6,26 @@
 
 package com.skcraft.launcher.creator.dialog;
 
+import java.awt.BorderLayout;
+import java.awt.Window;
+import java.awt.event.KeyEvent;
+import java.io.File;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.KeyStroke;
+import javax.swing.WindowConstants;
+
 import com.skcraft.launcher.swing.DirectoryField;
 import com.skcraft.launcher.swing.SwingHelper;
+
 import lombok.Data;
 import lombok.Getter;
 import net.miginfocom.swing.MigLayout;
-
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.io.File;
 
 public class DeployServerDialog extends JDialog {
 

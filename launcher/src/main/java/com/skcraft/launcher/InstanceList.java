@@ -6,17 +6,7 @@
 
 package com.skcraft.launcher;
 
-import com.skcraft.concurrency.DefaultProgress;
-import com.skcraft.concurrency.ProgressObservable;
-import com.skcraft.launcher.model.modpack.ManifestInfo;
-import com.skcraft.launcher.model.modpack.PackageList;
-import com.skcraft.launcher.persistence.Persistence;
-import com.skcraft.launcher.util.HttpRequest;
-import com.skcraft.launcher.util.SharedLocale;
-import lombok.Getter;
-import lombok.NonNull;
-import lombok.extern.java.Log;
-import org.apache.commons.io.filefilter.DirectoryFileFilter;
+import static com.skcraft.launcher.LauncherUtils.concat;
 
 import java.io.File;
 import java.io.FileFilter;
@@ -27,7 +17,19 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-import static com.skcraft.launcher.LauncherUtils.concat;
+import org.apache.commons.io.filefilter.DirectoryFileFilter;
+
+import com.skcraft.concurrency.DefaultProgress;
+import com.skcraft.concurrency.ProgressObservable;
+import com.skcraft.launcher.model.modpack.ManifestInfo;
+import com.skcraft.launcher.model.modpack.PackageList;
+import com.skcraft.launcher.persistence.Persistence;
+import com.skcraft.launcher.util.HttpRequest;
+import com.skcraft.launcher.util.SharedLocale;
+
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.extern.java.Log;
 
 /**
  * Stores the list of instances.

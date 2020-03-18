@@ -6,9 +6,9 @@
 
 package com.skcraft.launcher.creator.dialog;
 
-import com.skcraft.launcher.swing.DefaultTable;
-
 import javax.swing.table.TableModel;
+
+import com.skcraft.launcher.swing.DefaultTable;
 
 class ProblemTable extends DefaultTable {
 

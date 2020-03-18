@@ -6,15 +6,16 @@
 
 package com.skcraft.launcher.install;
 
-import com.google.common.io.Files;
-import lombok.NonNull;
-import lombok.extern.java.Log;
+import static com.skcraft.launcher.util.SharedLocale.tr;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 
-import static com.skcraft.launcher.util.SharedLocale.tr;
+import com.google.common.io.Files;
+
+import lombok.NonNull;
+import lombok.extern.java.Log;
 
 @Log
 public class FileCopy implements InstallTask {

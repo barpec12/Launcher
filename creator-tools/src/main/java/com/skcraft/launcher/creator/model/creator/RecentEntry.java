@@ -6,9 +6,9 @@
 
 package com.skcraft.launcher.creator.model.creator;
 
-import lombok.Data;
-
 import java.io.File;
+
+import lombok.Data;
 
 @Data
 public class RecentEntry {

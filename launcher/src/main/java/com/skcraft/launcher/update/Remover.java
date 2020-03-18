@@ -6,12 +6,8 @@
 
 package com.skcraft.launcher.update;
 
-import com.skcraft.concurrency.ProgressObservable;
-import com.skcraft.launcher.Instance;
-import com.skcraft.launcher.LauncherException;
-import com.skcraft.launcher.LauncherUtils;
-import com.skcraft.launcher.persistence.Persistence;
-import lombok.NonNull;
+import static com.skcraft.launcher.LauncherUtils.checkInterrupted;
+import static com.skcraft.launcher.util.SharedLocale.tr;
 
 import java.io.File;
 import java.io.IOException;
@@ -19,8 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-import static com.skcraft.launcher.LauncherUtils.checkInterrupted;
-import static com.skcraft.launcher.util.SharedLocale.tr;
+import com.skcraft.concurrency.ProgressObservable;
+import com.skcraft.launcher.Instance;
+import com.skcraft.launcher.LauncherException;
+import com.skcraft.launcher.LauncherUtils;
+import com.skcraft.launcher.persistence.Persistence;
+
+import lombok.NonNull;
 
 public class Remover implements Callable<Instance>, ProgressObservable {
 

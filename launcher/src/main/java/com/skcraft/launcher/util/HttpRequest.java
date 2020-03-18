@@ -6,21 +6,42 @@
 
 package com.skcraft.launcher.util;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.skcraft.concurrency.ProgressObservable;
-import lombok.Getter;
-import lombok.extern.java.Log;
+import static com.skcraft.launcher.LauncherUtils.checkInterrupted;
+import static org.apache.commons.io.IOUtils.closeQuietly;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.Closeable;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import java.io.*;
-import java.net.*;
-import java.util.*;
 
-import static com.skcraft.launcher.LauncherUtils.checkInterrupted;
-import static org.apache.commons.io.IOUtils.closeQuietly;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.skcraft.concurrency.ProgressObservable;
+
+import lombok.Getter;
+import lombok.extern.java.Log;
 
 /**
  * A simple fluent interface for performing HTTP requests that uses

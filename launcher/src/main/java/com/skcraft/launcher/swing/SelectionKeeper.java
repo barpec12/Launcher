@@ -6,13 +6,13 @@
 
 package com.skcraft.launcher.swing;
 
-import lombok.NonNull;
-
-import javax.swing.*;
+import javax.swing.JList;
 import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+
+import lombok.NonNull;
 
 public class SelectionKeeper implements ListSelectionListener, ListDataListener {
 

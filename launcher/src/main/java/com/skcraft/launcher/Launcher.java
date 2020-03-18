@@ -6,6 +6,26 @@
 
 package com.skcraft.launcher;
 
+import static com.skcraft.launcher.util.SharedLocale.tr;
+
+import java.awt.Window;
+import java.io.File;
+import java.io.FileFilter;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.lang.management.ManagementFactory;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.Locale;
+import java.util.Properties;
+import java.util.concurrent.Executors;
+import java.util.logging.Level;
+
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+
+import org.apache.commons.io.FileUtils;
+
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
 import com.google.common.base.Strings;
@@ -23,28 +43,15 @@ import com.skcraft.launcher.update.UpdateManager;
 import com.skcraft.launcher.util.HttpRequest;
 import com.skcraft.launcher.util.SharedLocale;
 import com.skcraft.launcher.util.SimpleLogFormatter;
+import com.skcraft.launcher.model.modpack.LauncherJSON;
+import com.skcraft.launcher.model.modpack.ModJSON;
+import com.skcraft.launcher.model.modpack.ModpackVersion;
 import com.sun.management.OperatingSystemMXBean;
+
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
 import lombok.extern.java.Log;
-import org.apache.commons.io.FileUtils;
-
-import javax.swing.*;
-import java.awt.*;
-import java.io.File;
-import java.io.FileFilter;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.lang.management.ManagementFactory;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.Locale;
-import java.util.Properties;
-import java.util.concurrent.Executors;
-import java.util.logging.Level;
-
-import static com.skcraft.launcher.util.SharedLocale.tr;
 
 /**
  * The main entry point for the launcher.
@@ -115,7 +122,7 @@ public final class Launcher {
      * Updates any incorrect / unset configuration settings with defaults.
      */
     public void setDefaultConfig() {
-        double configMax = config.getMaxMemory() / 1024.0;
+        double configMax = config.getMemory() / 1024.0;
         double suggestedMax = 2;
         double available = Double.MAX_VALUE;
 
@@ -130,8 +137,8 @@ public final class Launcher {
         } catch (Exception ignored) {
         }
 
-        if (config.getMaxMemory() <= 0 || configMax >= available - 1) {
-            config.setMaxMemory((int) (suggestedMax * 1024));
+        if (config.getMemory() <= 0 || configMax >= available - 1) {
+            config.setMemory((int) (suggestedMax * 1024));
         }
     }
 
@@ -317,7 +324,7 @@ public final class Launcher {
         try {
             String key = Strings.nullToEmpty(getConfig().getGameKey());
             return HttpRequest.url(
-                    String.format(getProperties().getProperty("packageListUrl"),
+                    String.format(getProperties().getProperty("packageListUrl") + "?key=" + key,
                             URLEncoder.encode(key, "UTF-8")));
         } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
@@ -364,6 +371,36 @@ public final class Launcher {
      */
     public URL propUrl(String key, String... args) {
         return HttpRequest.url(prop(key, args));
+    }
+    
+    public static URL getMetaURL(String version) throws IOException, InterruptedException {
+        URL url = new URL("https://launchermeta.mojang.com/mc/game/version_manifest.json");
+        LauncherJSON launcherJSON = HttpRequest
+                .get(url)
+                .execute()
+                .expectResponseCode(200)
+                .returnContent()
+                .asJson(LauncherJSON.class);
+        for(ModpackVersion mpVersion : launcherJSON.getVersions()) {
+            if(mpVersion.getID().equalsIgnoreCase(version)) {
+                return new URL(mpVersion.getURL());
+            }
+        }
+        return null;
+    }
+
+    public static String getDownloadURL(String version) throws IOException, InterruptedException {
+        URL url = getMetaURL(version);
+        if(url == null) {
+            return "";
+        }
+        ModJSON modJson = HttpRequest
+                .get(url)
+                .execute()
+                .expectResponseCode(200)
+                .returnContent()
+                .asJson(ModJSON.class);
+        return modJson.getDownloads().getClient().getUrl();
     }
 
     /**

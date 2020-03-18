@@ -6,17 +6,39 @@
 
 package com.skcraft.launcher.dialog;
 
-import com.skcraft.launcher.Configuration;
-import com.skcraft.launcher.Launcher;
-import com.skcraft.launcher.swing.*;
-import com.skcraft.launcher.persistence.Persistence;
-import com.skcraft.launcher.util.SharedLocale;
-import lombok.NonNull;
-
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.management.ManagementFactory;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JSpinner;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextField;
+
+import com.skcraft.launcher.Configuration;
+import com.skcraft.launcher.Launcher;
+import com.skcraft.launcher.launch.JavaRuntimeFinder;
+import com.skcraft.launcher.persistence.Persistence;
+import com.skcraft.launcher.swing.ActionListeners;
+import com.skcraft.launcher.swing.FormPanel;
+import com.skcraft.launcher.swing.LinedBoxPanel;
+import com.skcraft.launcher.swing.ObjectSwingMapper;
+import com.skcraft.launcher.swing.SwingHelper;
+import com.skcraft.launcher.util.SharedLocale;
+import com.sun.management.OperatingSystemMXBean;
+
+import lombok.NonNull;
 
 /**
  * A dialog to modify configuration options.
@@ -29,14 +51,14 @@ public class ConfigurationDialog extends JDialog {
     private final JPanel tabContainer = new JPanel(new BorderLayout());
     private final JTabbedPane tabbedPane = new JTabbedPane();
     private final FormPanel javaSettingsPanel = new FormPanel();
+    private final JComboBox<String> preSetJvmPath = new JComboBox<String>();
     private final JTextField jvmPathText = new JTextField();
     private final JTextField jvmArgsText = new JTextField();
-    private final JSpinner minMemorySpinner = new JSpinner();
-    private final JSpinner maxMemorySpinner = new JSpinner();
-    private final JSpinner permGenSpinner = new JSpinner();
+    private final JComboBox<String> memoryComboBox = new JComboBox<String>();
     private final FormPanel gameSettingsPanel = new FormPanel();
     private final JSpinner widthSpinner = new JSpinner();
     private final JSpinner heightSpinner = new JSpinner();
+    private final JCheckBox closeConsoleCheck = new JCheckBox(SharedLocale.tr("options.closeConsoleCheck"));
     private final FormPanel proxySettingsPanel = new FormPanel();
     private final JCheckBox useProxyCheck = new JCheckBox(SharedLocale.tr("options.useProxyCheck"));
     private final JTextField proxyHostText = new JTextField();
@@ -59,7 +81,7 @@ public class ConfigurationDialog extends JDialog {
      */
     public ConfigurationDialog(Window owner, @NonNull Launcher launcher) {
         super(owner, ModalityType.DOCUMENT_MODAL);
-
+        
         this.config = launcher.getConfig();
         mapper = new ObjectSwingMapper(config);
 
@@ -69,14 +91,15 @@ public class ConfigurationDialog extends JDialog {
         setSize(new Dimension(400, 500));
         setResizable(false);
         setLocationRelativeTo(owner);
+        setUndecorated(true);
 
+        mapper.map(preSetJvmPath, "preSetJvmPath");
         mapper.map(jvmPathText, "jvmPath");
         mapper.map(jvmArgsText, "jvmArgs");
-        mapper.map(minMemorySpinner, "minMemory");
-        mapper.map(maxMemorySpinner, "maxMemory");
-        mapper.map(permGenSpinner, "permGen");
+        mapper.map(memoryComboBox, "memory", true);
         mapper.map(widthSpinner, "windowWidth");
         mapper.map(heightSpinner, "widowHeight");
+        mapper.map(closeConsoleCheck, "closeConsole");
         mapper.map(useProxyCheck, "proxyEnabled");
         mapper.map(proxyHostText, "proxyHost");
         mapper.map(proxyPortText, "proxyPort");
@@ -88,18 +111,31 @@ public class ConfigurationDialog extends JDialog {
     }
 
     private void initComponents() {
+    	javaSettingsPanel.addRow(new JLabel(SharedLocale.tr("options.preSetJvmPath")), preSetJvmPath);
+    	
+    	if(JavaRuntimeFinder.getAllJavaNames() != null){
+    		for(String javaName : JavaRuntimeFinder.getAllJavaNames()){
+    			preSetJvmPath.addItem(javaName);
+    		}
+    	} else {
+    		preSetJvmPath.addItem("Nenhum java encontrado");
+    	}
+    	
         javaSettingsPanel.addRow(new JLabel(SharedLocale.tr("options.jvmPath")), jvmPathText);
         javaSettingsPanel.addRow(new JLabel(SharedLocale.tr("options.jvmArguments")), jvmArgsText);
         javaSettingsPanel.addRow(Box.createVerticalStrut(15));
+        
+        javaSettingsPanel.addRow(new JLabel(SharedLocale.tr("options.memory")), memoryComboBox);
+        initMemoryComboBox();
+        
         javaSettingsPanel.addRow(new JLabel(SharedLocale.tr("options.64BitJavaWarning")));
-        javaSettingsPanel.addRow(new JLabel(SharedLocale.tr("options.minMemory")), minMemorySpinner);
-        javaSettingsPanel.addRow(new JLabel(SharedLocale.tr("options.maxMemory")), maxMemorySpinner);
-        javaSettingsPanel.addRow(new JLabel(SharedLocale.tr("options.permGen")), permGenSpinner);
         SwingHelper.removeOpaqueness(javaSettingsPanel);
         tabbedPane.addTab(SharedLocale.tr("options.javaTab"), SwingHelper.alignTabbedPane(javaSettingsPanel));
 
         gameSettingsPanel.addRow(new JLabel(SharedLocale.tr("options.windowWidth")), widthSpinner);
         gameSettingsPanel.addRow(new JLabel(SharedLocale.tr("options.windowHeight")), heightSpinner);
+        gameSettingsPanel.addRow(closeConsoleCheck);
+        
         SwingHelper.removeOpaqueness(gameSettingsPanel);
         tabbedPane.addTab(SharedLocale.tr("options.minecraftTab"), SwingHelper.alignTabbedPane(gameSettingsPanel));
 
@@ -150,6 +186,33 @@ public class ConfigurationDialog extends JDialog {
                 ConsoleFrame.showMessages();
             }
         });
+        
+        preSetJvmPath.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				memoryComboBox.removeAllItems();
+				initMemoryComboBox();
+				memoryComboBox.setSelectedItem(((double)config.getMemory() / 1024) + " GB");
+			} 	
+        });
+    }
+    
+    private void initMemoryComboBox() {
+    	double availableRam = Double.MAX_VALUE;
+    	OperatingSystemMXBean bean = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
+        availableRam = Math.round(bean.getTotalPhysicalMemorySize() / 1024.0 / 1024.0 / 1024.0);
+        
+        if((preSetJvmPath.getSelectedItem() != null) && ((String)preSetJvmPath.getSelectedItem()).contains("32-Bit")) {
+        	memoryComboBox.addItem("0.5 GB");
+        	memoryComboBox.addItem("1 GB");
+        } else {
+        	double addRamToBox = 0.5;
+        	while(availableRam > 0.5){
+            	memoryComboBox.addItem(addRamToBox + " GB");
+            	addRamToBox = addRamToBox >= 4 ? addRamToBox + 1 : addRamToBox + 0.5;
+            	availableRam = addRamToBox >= 4 ? availableRam - 1 : availableRam - 0.5;
+            }
+        }
     }
 
     /**

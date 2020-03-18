@@ -6,10 +6,11 @@
 
 package com.skcraft.launcher.creator.swing;
 
-import com.skcraft.launcher.creator.model.creator.Workspace;
+import java.io.File;
 
 import javax.swing.filechooser.FileFilter;
-import java.io.File;
+
+import com.skcraft.launcher.creator.model.creator.Workspace;
 
 public class PackDirectoryFilter extends FileFilter {
 

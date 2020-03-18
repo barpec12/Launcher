@@ -6,13 +6,15 @@
 
 package com.skcraft.launcher.swing;
 
-import com.skcraft.launcher.util.SharedLocale;
-
-import javax.swing.*;
-import javax.swing.text.JTextComponent;
-import java.awt.*;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JMenuItem;
+import javax.swing.JPopupMenu;
+import javax.swing.text.JTextComponent;
+
+import com.skcraft.launcher.util.SharedLocale;
 
 public class TextFieldPopupMenu extends JPopupMenu implements ActionListener {
 
